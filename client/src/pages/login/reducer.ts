@@ -1,14 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { AuthState } from '@aws-amplify/ui-components';
 import jwtDecode from 'jwt-decode';
-import { Groups } from '../../shared/constants';
 import { Login } from './types';
 
 export const initialState: Login = {
   authState: AuthState.SignIn,
   user: undefined,
   groups: [],
-  investor: false,
 };
 
 const slice = createSlice({
@@ -24,7 +22,6 @@ const slice = createSlice({
         // decode and set the user's groups
         type CognitoGroups = { ['cognito:groups']: string[] };
         const decoded = jwtDecode<CognitoGroups>(state.user?.signInUserSession?.idToken.jwtToken);
-        state.investor = decoded['cognito:groups'].includes(Groups.INVESTOR);
       }
     },
   },

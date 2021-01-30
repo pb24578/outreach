@@ -20,5 +20,4 @@ export interface Login {
   authState: AuthState;
   user: CognitoUser | undefined;
   groups: string[];
-  investor: boolean;
 }
