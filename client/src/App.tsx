@@ -28,8 +28,8 @@ const App = () => {
   const setSignedInState = async () => {
     const user = await getUserCredentials();
     if (user) {
-      dispatch(setUser(user));
       dispatch(setAuthState(AuthState.SignedIn));
+      dispatch(setUser(user));
     }
     setUserLoading(false);
   };
