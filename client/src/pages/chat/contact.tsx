@@ -12,8 +12,8 @@ const Profile = styled(FlexCenter)`
 `;
 
 const ContactIcon = styled.img`
-  width: 47px;
-  height: 57px;
+  width: 40%
+  height: 57%;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `;
 
