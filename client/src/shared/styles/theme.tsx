@@ -5,10 +5,10 @@ export const MainTheme = {
   colors: {
     primary: '#071013',
     secondary: '#EDF060',
-    teritary: '#ADB6C4',
-    quaternary: '#C97064',
-    quinary: '#4D2D2F',
-    white: '#FFFFFF',
+    teritary: '#FFFFFF',
+    quaternary: '#ADB6C4',
+    quinary: '#C97064',
+    senary: '#4D2D2F',
   },
 };
 
