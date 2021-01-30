@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "citihack9e7f1ba9_identitypool_9e7f1ba9",
+    "identityPoolName": "outreach14fddf4b_identitypool_14fddf4b",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "citiha9e7f1ba9",
-    "userPoolName": "citihack9e7f1ba9_userpool_9e7f1ba9",
+    "resourceNameTruncated": "outrea14fddf4b",
+    "userPoolName": "outreach14fddf4b_userpool_14fddf4b",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "citiha9e7f1ba9_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "outrea14fddf4b_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "9e7f1ba9",
-    "resourceName": "citihack9e7f1ba9",
+    "sharedId": "14fddf4b",
+    "resourceName": "outreach14fddf4b",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
