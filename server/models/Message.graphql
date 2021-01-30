@@ -1,7 +1,0 @@
-type Message @model {
-  id: ID!
-  senderId: ID!
-
-  # Connections
-  chatRoom: ChatRoom! @connection(name: "ChatRoomMessages")
-}

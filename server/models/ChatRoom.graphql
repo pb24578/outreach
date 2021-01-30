@@ -1,8 +1,0 @@
-type ChatRoom @model {
-  id: ID!
-
-  # Connections
-  businessOwner: BusinessOwner! @connection(name: "BusinessOwnerChatRooms")
-  investor: Investor! @connection(name: "InvestorChatRooms")
-  messages: [Message!] @connection(name: "ChatRoomMessages")
-}

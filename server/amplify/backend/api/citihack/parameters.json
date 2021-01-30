@@ -1,0 +1,11 @@
+{
+    "AppSyncApiName": "citihack",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authcitihack9e7f1ba9",
+            "Outputs.UserPoolId"
+        ]
+    }
+}
