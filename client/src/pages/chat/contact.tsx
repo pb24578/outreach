@@ -5,6 +5,8 @@ import { ContactImage } from '../../assets';
 
 interface ContactProps {
   selected: boolean;
+  name: string;
+  message: string;
 }
 
 interface SelectedProps {
@@ -67,7 +69,7 @@ const RecentMessage = styled.div<SelectedProps>`
 `;
 
 export const Contact = (props: ContactProps) => {
-  const { selected } = props;
+  const { message, name, selected } = props;
   return (
     <Container>
       <ContactContainer selected={selected}>
@@ -75,8 +77,8 @@ export const Contact = (props: ContactProps) => {
           <ContactIcon src={ContactImage} />
         </Profile>
         <ChatContent>
-          <Name selected={selected}>Name Here</Name>
-          <RecentMessage selected={selected}>This was the last message sent...</RecentMessage>
+          <Name selected={selected}>{name}</Name>
+          <RecentMessage selected={selected}>{message}</RecentMessage>
         </ChatContent>
       </ContactContainer>
       <ArrowRight selected={selected} />

@@ -4,7 +4,7 @@ import { Contact } from './contact';
 
 const Chat = () => (
   <div>
-    <Contact selected />
+    <Contact message="This was the last message sent..." name="Name Here" selected />
   </div>
 );
 
