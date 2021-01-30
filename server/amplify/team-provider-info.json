@@ -1,0 +1,20 @@
+{
+  "developers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-citihack-developers-00526-authRole",
+      "UnauthRoleArn": "arn:aws:iam::988555125405:role/amplify-citihack-developers-00526-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::988555125405:role/amplify-citihack-developers-00526-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-citihack-developers-00526-deployment",
+      "UnauthRoleName": "amplify-citihack-developers-00526-unauthRole",
+      "StackName": "amplify-citihack-developers-00526",
+      "StackId": "arn:aws:cloudformation:us-east-1:988555125405:stack/amplify-citihack-developers-00526/27760bf0-62c1-11eb-b1fb-0af49fb39b33",
+      "AmplifyAppId": "dadnsstzsfwty"
+    },
+    "categories": {
+      "auth": {
+        "citihack9e7f1ba9": {}
+      }
+    }
+  }
+}
