@@ -49,13 +49,13 @@ const App = () => {
             <Login />
           </Route>
           <Route exact path="/dashboard">
-            {isSignedIn ? <Dashboard /> : <Redirect to="/login" />}
+            {isSignedIn ? <Dashboard /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/profile">
-            {isSignedIn ? <Profile /> : <Redirect to="/login" />}
+            {isSignedIn ? <Profile /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/chat">
-            {isSignedIn ? <Chat /> : <Redirect to="/login" />}
+            {isSignedIn ? <Chat /> : <Redirect to="/" />}
           </Route>
         </Switch>
       </Theme>
