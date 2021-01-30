@@ -1,6 +1,11 @@
 @import url('http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
+body {
+  background: #071013;
+  color: white;
+}
+
 h1 {
   font-family: Roboto;
   font-style: normal;
@@ -28,5 +33,5 @@ footer {
 div {
   font-family: Roboto;
   font-style: normal;
-  font-weight: 200;
+  font-weight: 300;
 }
