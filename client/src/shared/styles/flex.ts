@@ -14,6 +14,10 @@ export const FlexCenter = styled(FlexRow)`
   justify-content: center;
 `;
 
+export const FlexFive = styled.div`
+  flex: 0.05;
+`;
+
 export const FlexTen = styled.div`
   flex: 0.1;
 `;

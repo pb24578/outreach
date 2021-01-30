@@ -3,6 +3,7 @@ import { withAuthenticator } from '@aws-amplify/ui-react';
 import { Contact } from './contact';
 import { Message } from './message';
 import { Offer } from './offer';
+import { MessageBar } from './message-bar';
 
 const Chat = () => {
   const messager = true;
@@ -19,6 +20,7 @@ const Chat = () => {
       <Message messager={messager}>
         <Offer messager={messager} name={name} price={price} apy={apy} />
       </Message>
+      <MessageBar />
     </div>
   );
 };

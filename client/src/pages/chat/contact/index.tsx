@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContactImage } from '../../../assets';
+import ContactImage from '../../../assets/chat/contact.png';
 import {
   ArrowRight,
   ChatContent,
