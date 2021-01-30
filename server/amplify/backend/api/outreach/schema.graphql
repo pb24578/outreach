@@ -1,0 +1,46 @@
+type BusinessOwner @model {
+ id: ID!
+ firstName: String!
+ lastName: String!
+ businessName: String!
+ bio: String!
+ minorityOwned: Boolean!
+ loans: [Loan!] @connection(name: "BusinessOwnerLoans")
+ chatRooms: [ChatRoom!] @connection(name: "BusinessOwnerChatRooms")
+}
+ 
+type ChatRoom @model {
+ id: ID!
+ businessOwner: BusinessOwner! @connection(name: "BusinessOwnerChatRooms")
+ investor: Investor! @connection(name: "InvestorChatRooms")
+ messages: [Message!] @connection(name: "ChatRoomMessages")
+}
+ 
+type Investor @model {
+ id: ID!
+ firstName: String!
+ lastName: String!
+ bio: String!
+ minMaxLoan: [Float!]
+ loans: [Loan!] @connection(name: "InvestorLoans")
+ chatRooms: [ChatRoom!] @connection(name: "InvestorChatRooms")
+}
+ 
+type Loan @model {
+ id: ID!
+ initialLoan: Float!
+ interestRate: Float!
+ dailyInterestRate: Float!
+ currentValue: Float!
+ amountPaid: Float!
+ lastPaidAt: AWSDate
+ closedAt: AWSDate
+ businessOwner: BusinessOwner! @connection(name: "BusinessOwnerLoans")
+ investor: Investor! @connection(name: "InvestorLoans")
+}
+ 
+type Message @model {
+ id: ID!
+ senderId: ID!
+ chatRoom: ChatRoom! @connection(name: "ChatRoomMessages")
+}

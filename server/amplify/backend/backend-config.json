@@ -1,6 +1,6 @@
 {
   "auth": {
-    "citihack9e7f1ba9": {
+    "outreach14fddf4b": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -8,7 +8,7 @@
     }
   },
   "api": {
-    "citihack": {
+    "outreach": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
@@ -16,7 +16,7 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authcitihack9e7f1ba9"
+              "userPoolId": "authoutreach14fddf4b"
             }
           },
           "additionalAuthenticationProviders": []
