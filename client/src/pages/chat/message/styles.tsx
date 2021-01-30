@@ -15,12 +15,23 @@ export const Container = styled.div<MessagerProps>`
 
 export const ArrowBottom = styled.div<MessagerProps>`
   position: absolute;
-  right: ${(props) => (props.messager ? 0 : '100%')};
+  ${({ messager }) => messager && 'right: 0'};
+  ${({ messager }) => !messager && 'left: 0'};
   bottom: -20px;
   width: 0;
   height: 0;
-  border-left: 20px solid transparent;
-  border-right: 0px solid transparent;
+  ${(props) =>
+    props.messager &&
+    `
+    border-left: 20px solid transparent;
+    border-right: 0px solid transparent;
+  `};
+  ${(props) =>
+    !props.messager &&
+    `
+    border-left: 0px solid transparent;
+    border-right: 20px solid transparent;
+  `};
   border-top: 20px solid ${(props) => (props.messager ? props.theme.colors.secondary : props.theme.colors.teritary)};
 `;
 
