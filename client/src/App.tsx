@@ -4,6 +4,7 @@ import './shared/styles/global.css';
 import Amplify from 'aws-amplify';
 import Theme from './shared/styles/theme';
 import Landing from './pages/landing';
+import Login from './pages/login';
 import Dashboard from './pages/dashboard';
 import Profile from './pages/profile';
 import Chat from './pages/chat';
@@ -17,6 +18,9 @@ const App = () => (
       <Switch>
         <Route exact path="/">
           <Landing />
+        </Route>
+        <Route exact path="/login">
+          <Login />
         </Route>
         <Route exact path="/dashboard">
           <Dashboard />

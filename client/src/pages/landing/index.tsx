@@ -94,7 +94,7 @@ const Landing = () => (
         </TeamMember>
       </TeamMembersRow>
     </TeamMembersContainer>
-    <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+    <Link to="/login" style={{ textDecoration: 'none' }}>
       <GetStarted>
         <h2>Ready to Reach Out? Sign Up Now</h2>
         <FontAwesomeIcon icon={faCaretRight} size="4x" />
