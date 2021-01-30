@@ -9,9 +9,16 @@ export interface CognitoUser extends CognitoUserInterface {
     phone_number_verified: boolean;
     sub: string;
   };
+  signInUserSession?: {
+    idToken: {
+      jwtToken: string;
+    };
+  };
 }
 
 export interface Login {
   authState: AuthState;
   user: CognitoUser | undefined;
+  groups: string[];
+  investor: boolean;
 }
