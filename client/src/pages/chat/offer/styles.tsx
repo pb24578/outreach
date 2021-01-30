@@ -9,6 +9,7 @@ export const Container = styled.div<MessagerProps>`
   width: 304px;
   height: 168px;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: ${(props) => props.theme.colors.primary};
   background-color: ${(props) => (props.messager ? props.theme.colors.teritary : props.theme.colors.secondary)};
 `;
 

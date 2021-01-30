@@ -9,6 +9,7 @@ export const Container = styled.div<MessagerProps>`
   position: relative;
   padding: 15px 20px;
   max-width: ${(props) => (props.messager ? '30%' : '60%')};
+  color: ${(props) => props.theme.colors.primary};
   background-color: ${(props) => (props.messager ? props.theme.colors.secondary : props.theme.colors.teritary)};
 `;
 

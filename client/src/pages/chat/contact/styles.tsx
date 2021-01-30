@@ -5,7 +5,9 @@ interface SelectedProps {
   selected: boolean;
 }
 
-export const Container = styled(FlexRow)``;
+export const Container = styled(FlexRow)`
+  color: ${(props) => props.theme.colors.primary};
+`;
 
 export const ContactContainer = styled(FlexRow)<SelectedProps>`
   align-items: center;
