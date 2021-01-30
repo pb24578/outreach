@@ -1,0 +1,18 @@
+type Loan @model {
+  id: ID!
+
+  # Static data set upon creation
+  initialLoan: Float!
+  interestRate: Float!
+  dailyInterestRate: Float!
+  
+  # Dynamic data
+  currentValue: Float!
+  amountPaid: Float!
+  lastPaidAt: AWSDate
+  closedAt: AWSDate
+
+  # Connections
+  businessOwner: BusinessOwner! @connection(name: "BusinessOwnerLoans")
+  investor: Investor! @connection(name: "InvestorLoans")
+}

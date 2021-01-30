@@ -1,0 +1,13 @@
+type Investor @model {
+  id: ID!
+
+  # Profile Info
+  firstName: String!
+  lastName: String!
+  bio: String!
+  minMaxLoan: [Float!]
+
+  # Connections
+  loans: [Loan!] @connection(name: "InvestorLoans")
+  chatRooms: [ChatRoom!] @connection(name: "InvestorChatRooms")
+}
