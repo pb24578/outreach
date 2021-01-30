@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import './shared/styles/global.css';
@@ -19,6 +19,7 @@ Amplify.configure(awsconfig);
 const App = () => {
   const dispatch = useDispatch();
   const authState = useSelector(getAuthState);
+  const [userLoading, setUserLoading] = useState(true);
   const isSignedIn = authState === AuthState.SignedIn;
 
   /**
@@ -30,6 +31,7 @@ const App = () => {
       dispatch(setUser(user));
       dispatch(setAuthState(AuthState.SignedIn));
     }
+    setUserLoading(false);
   };
 
   useEffect(() => {
@@ -37,6 +39,10 @@ const App = () => {
       setSignedInState();
     }
   }, [authState]);
+
+  if (userLoading) {
+    return <div />;
+  }
 
   return (
     <BrowserRouter>
@@ -49,13 +55,13 @@ const App = () => {
             <Login />
           </Route>
           <Route exact path="/dashboard">
-            {isSignedIn ? <Dashboard /> : <Redirect to="/" />}
+            {userLoading || isSignedIn ? <Dashboard /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/profile">
-            {isSignedIn ? <Profile /> : <Redirect to="/" />}
+            {userLoading || isSignedIn ? <Profile /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/chat">
-            {isSignedIn ? <Chat /> : <Redirect to="/" />}
+            {userLoading || isSignedIn ? <Chat /> : <Redirect to="/" />}
           </Route>
         </Switch>
       </Theme>

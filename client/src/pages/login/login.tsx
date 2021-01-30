@@ -16,15 +16,15 @@ const Login = () => {
   useEffect(() => {
     onAuthUIStateChange((nextAuthState, authData) => {
       dispatch(setAuthState(nextAuthState));
-      if (authData) {
-        dispatch(setUser(authData));
-      }
+      dispatch(setUser(authData));
     });
   }, []);
 
-  return authState === AuthState.SignedIn && user ? (
-    <Redirect to="/dashboard" />
-  ) : (
+  if (authState === AuthState.SignedIn && user) {
+    return <Redirect to="/dashboard" />;
+  }
+
+  return (
     <AmplifyAuthenticator>
       <AmplifySignUp
         slot="sign-up"

@@ -1,5 +1,4 @@
 import React from 'react';
-import { withAuthenticator } from '@aws-amplify/ui-react';
 import { Contact } from './contact';
 import { Message } from './message';
 import { Offer } from './offer';
@@ -25,4 +24,4 @@ const Chat = () => {
   );
 };
 
-export default withAuthenticator(Chat);
+export default Chat;

@@ -1,10 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { AuthState } from '@aws-amplify/ui-components';
-
-interface Login {
-  authState: AuthState;
-  user: any | undefined;
-}
+import { AuthState, CognitoUserInterface } from '@aws-amplify/ui-components';
+import { CognitoUser, Login } from './types';
 
 export const initialState: Login = {
   authState: AuthState.SignIn,
@@ -18,7 +14,7 @@ const slice = createSlice({
     setAuthState: (state, action: PayloadAction<AuthState>) => {
       state.authState = action.payload;
     },
-    setUser: (state, action: PayloadAction<object>) => {
+    setUser: (state, action: PayloadAction<any | undefined>) => {
       state.user = action.payload;
     },
   },
