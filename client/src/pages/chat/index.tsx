@@ -1,8 +1,11 @@
 import React from 'react';
+import { withAuthenticator } from '@aws-amplify/ui-react';
 import { Contact } from './contact';
 
-export const Chat = () => (
+const Chat = () => (
   <div>
     <Contact selected />
   </div>
 );
+
+export default withAuthenticator(Chat);
