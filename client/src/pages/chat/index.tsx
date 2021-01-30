@@ -6,7 +6,7 @@ import { Message } from './message';
 const Chat = () => (
   <div>
     <Contact message="This was the last message sent..." name="Name Here" selected />
-    <Message messager message="Hello World!" />
+    <Message messager message="This is a test for a message." />
   </div>
 );
 
