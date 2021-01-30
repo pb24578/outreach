@@ -1,11 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './shared/styles/global.css';
+import Amplify from 'aws-amplify';
+import { withAuthenticator } from '@aws-amplify/ui-react';
 import Theme from './shared/styles/theme';
 import { Landing } from './pages/landing';
 import { Dashboard } from './pages/dashboard';
 import { Profile } from './pages/profile';
 import { Chat } from './pages/chat';
+import awsconfig from './aws-exports';
+
+Amplify.configure(awsconfig);
 
 const App = () => (
   <BrowserRouter>
@@ -28,4 +33,4 @@ const App = () => (
   </BrowserRouter>
 );
 
-export default App;
+export default withAuthenticator(App);
