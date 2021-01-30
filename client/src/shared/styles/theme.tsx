@@ -8,6 +8,7 @@ export const MainTheme = {
     teritary: '#ADB6C4',
     quaternary: '#C97064',
     quinary: '#4D2D2F',
+    white: '#FFFFFF',
   },
 };
 

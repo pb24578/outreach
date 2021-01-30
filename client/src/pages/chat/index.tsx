@@ -3,6 +3,6 @@ import { Contact } from './contact';
 
 export const Chat = () => (
   <div>
-    <Contact />
+    <Contact selected />
   </div>
 );
