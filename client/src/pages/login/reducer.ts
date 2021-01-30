@@ -22,6 +22,7 @@ const slice = createSlice({
         // decode and set the user's groups
         type CognitoGroups = { ['cognito:groups']: string[] };
         const decoded = jwtDecode<CognitoGroups>(state.user?.signInUserSession?.idToken.jwtToken);
+        state.groups = decoded['cognito:groups'];
       }
     },
   },
