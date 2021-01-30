@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 export const MainTheme = {
   colors: {
     primary: '#071013',
-    seconday: '#EDF060',
+    secondary: '#EDF060',
     teritary: '#ADB6C4',
     quaternary: '#C97064',
     quinary: '#4D2D2F',
