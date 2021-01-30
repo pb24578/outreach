@@ -76,14 +76,14 @@ const Landing = () => (
           <a href="https://pravat.bhusal.dev/" target="_blank" rel="noreferrer">
             Pravat Bhusal
           </a>
-          Full Stack Dev
+          Full Stack Engineer
         </TeamMember>
         <TeamMember>
           <img src={Andrew} alt="Andrew Le" />
           <a href="https://aale.dev/" target="_blank" rel="noreferrer">
             Andrew Le
           </a>
-          Backend/AWS Dev
+          Full Stack Engineer
         </TeamMember>
         <TeamMember>
           <img src={Fronrich} alt="Fronrich Puno" />

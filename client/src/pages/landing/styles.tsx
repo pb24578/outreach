@@ -33,6 +33,7 @@ export const NavLinks = styled.div`
   padding-right: 20px;
 
   & a {
+    color: white;
     font-size: 1.5em;
     font-weight: 400;
     padding: 0 20px;
