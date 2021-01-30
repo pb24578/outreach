@@ -1,3 +1,11 @@
 import React from 'react';
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 
-export const Profile = () => <div>Hello World!</div>;
+const Profile = () => (
+  <div>
+    <AmplifySignOut />
+    Hello World!
+  </div>
+);
+
+export default withAuthenticator(Profile);

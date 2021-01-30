@@ -1,3 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { withAuthenticator } from '@aws-amplify/ui-react';
 
-export const Dashboard = () => <div>Hello World!</div>;
+const Dashboard = () => (
+  <div>
+    <Link to="/profile">To Profile</Link>
+  </div>
+);
+
+export default withAuthenticator(Dashboard);

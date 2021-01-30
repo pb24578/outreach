@@ -1,9 +1,10 @@
 import React from 'react';
-import { AmplifySignOut } from '@aws-amplify/ui-react';
+import { Link } from 'react-router-dom';
 
-export const Landing = () => (
+const Landing = () => (
   <div>
-    <AmplifySignOut />
-    Hello World!
+    <Link to="/dashboard">To Dashboard</Link>
   </div>
 );
+
+export default Landing;
