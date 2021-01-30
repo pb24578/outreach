@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { withAuthenticator } from '@aws-amplify/ui-react';
 
 const Dashboard = () => (
   <div>
@@ -8,4 +7,4 @@ const Dashboard = () => (
   </div>
 );
 
-export default withAuthenticator(Dashboard);
+export default Dashboard;
