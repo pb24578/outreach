@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FlexRow, FlexColumn } from '../../shared/styles/flex';
+import { FlexRow, FlexColumn, FlexCenter } from '../../shared/styles/flex';
 
 export const Wrapper = styled(FlexColumn)`
   align-items: center;
@@ -7,13 +7,13 @@ export const Wrapper = styled(FlexColumn)`
   & h3 {
     font-size: 1.75em;
     margin-block: 0.5em;
-    color: #edf060;
+    color: ${(props) => props.theme.colors.secondary};
   }
 
   & a {
-    color: #071013;
+    color: ${(props) => props.theme.colors.primary};
     &:visited {
-      color: #071013;
+      color: ${(props) => props.theme.colors.primary};
     }
   }
 `;
@@ -54,19 +54,20 @@ export const Title = styled(FlexColumn)`
   & h2 {
     font-size: 3em;
     margin-block: 0;
+    color: ${(props) => props.theme.colors.secondary};
   }
 `;
 
-export const GetStarted = styled.div`
+export const GetStarted = styled(FlexCenter)`
   width: 800px;
   padding: 5px;
-  background-color: #edf060;
-  text-align: center;
+  background-color: ${(props) => props.theme.colors.secondary};
   margin-bottom: 50px;
 
   & h2 {
     font-size: 2em;
     margin-block: 0.5em;
+    margin-right: 20px;
   }
 
   &:hover {

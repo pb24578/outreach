@@ -1,6 +1,8 @@
 /* eslint-disable max-len */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import {
   Wrapper,
   Header,
@@ -95,6 +97,7 @@ const Landing = () => (
     <Link to="/dashboard" style={{ textDecoration: 'none' }}>
       <GetStarted>
         <h2>Ready to Reach Out? Sign Up Now</h2>
+        <FontAwesomeIcon icon={faCaretRight} size="4x" />
       </GetStarted>
     </Link>
   </Wrapper>
