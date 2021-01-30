@@ -1,35 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import './shared/styles/global.css';
-import Amplify, { Auth } from 'aws-amplify';
+import Amplify from 'aws-amplify';
+import { AuthState } from '@aws-amplify/ui-components';
+import Login, { actions as loginActions, getAuthState, getUserCredentials } from './pages/login';
 import Theme from './shared/styles/theme';
 import Landing from './pages/landing';
-import Login from './pages/login';
 import Dashboard from './pages/dashboard';
 import Profile from './pages/profile';
 import Chat from './pages/chat';
 import awsconfig from './aws-exports';
 
-const checkIfSignedIn = async () => {
-  try {
-    await Auth.currentAuthenticatedUser();
-    return true;
-  } catch {
-    return false;
-  }
-};
+const { setAuthState, setUser } = loginActions;
 
 Amplify.configure(awsconfig);
 
 const App = () => {
-  const [signedIn, setSignedIn] = useState(true);
+  const dispatch = useDispatch();
+  const authState = useSelector(getAuthState);
+  const isSignedIn = authState === AuthState.SignedIn;
+
+  /**
+   * Loads the user and updates the state if the user is signed-in.
+   */
   const setSignedInState = async () => {
-    setSignedIn(await checkIfSignedIn());
+    const user = await getUserCredentials();
+    if (user) {
+      dispatch(setUser(user));
+      dispatch(setAuthState(AuthState.SignedIn));
+    }
   };
 
   useEffect(() => {
-    setSignedInState();
-  }, []);
+    if (!isSignedIn) {
+      setSignedInState();
+    }
+  }, [authState]);
 
   return (
     <BrowserRouter>
@@ -42,13 +49,13 @@ const App = () => {
             <Login />
           </Route>
           <Route exact path="/dashboard">
-            {signedIn ? <Dashboard /> : <Redirect to="/login" />}
+            {isSignedIn ? <Dashboard /> : <Redirect to="/login" />}
           </Route>
           <Route exact path="/profile">
-            {signedIn ? <Profile /> : <Redirect to="/login" />}
+            {isSignedIn ? <Profile /> : <Redirect to="/login" />}
           </Route>
           <Route exact path="/chat">
-            {signedIn ? <Chat /> : <Redirect to="/login" />}
+            {isSignedIn ? <Chat /> : <Redirect to="/login" />}
           </Route>
         </Switch>
       </Theme>

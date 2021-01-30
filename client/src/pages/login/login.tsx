@@ -1,16 +1,24 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { AmplifyAuthenticator, AmplifySignUp, AmplifySignIn } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
+import { getAuthState, getUser } from './selectors';
+import { actions } from './reducer';
+
+const { setAuthState, setUser } = actions;
 
 const Login = () => {
-  const [authState, setAuthState] = React.useState<AuthState>();
-  const [user, setUser] = React.useState<object | undefined>();
+  const dispatch = useDispatch();
+  const authState = useSelector(getAuthState);
+  const user = useSelector(getUser);
 
   useEffect(() => {
     onAuthUIStateChange((nextAuthState, authData) => {
-      setAuthState(nextAuthState);
-      setUser(authData);
+      dispatch(setAuthState(nextAuthState));
+      if (authData) {
+        dispatch(setUser(authData));
+      }
     });
   }, []);
 
