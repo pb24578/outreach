@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { AmplifyAuthenticator, AmplifySignUp, AmplifySignIn } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
@@ -7,7 +7,7 @@ const Login = () => {
   const [authState, setAuthState] = React.useState<AuthState>();
   const [user, setUser] = React.useState<object | undefined>();
 
-  React.useEffect(() => {
+  useEffect(() => {
     onAuthUIStateChange((nextAuthState, authData) => {
       setAuthState(nextAuthState);
       setUser(authData);

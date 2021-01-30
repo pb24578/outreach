@@ -1,5 +1,5 @@
 import React from 'react';
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+import { AmplifySignOut } from '@aws-amplify/ui-react';
 
 const Profile = () => (
   <div>
@@ -8,4 +8,4 @@ const Profile = () => (
   </div>
 );
 
-export default withAuthenticator(Profile);
+export default Profile;
