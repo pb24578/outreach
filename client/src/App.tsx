@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import './shared/styles/global.css';
 import Theme from './shared/styles/theme';
 import { Landing } from './pages/landing';
 import { Dashboard } from './pages/dashboard';

@@ -1,0 +1,29 @@
+h1 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 900;
+}
+
+h2 {
+  font-family: Pacifico;
+  font-style: normal;
+  font-weight: normal;
+}
+
+h3 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 900;
+}
+
+footer {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+}
+
+div {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 200;
+}
