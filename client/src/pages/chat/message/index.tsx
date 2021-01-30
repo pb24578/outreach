@@ -3,14 +3,20 @@ import { ArrowBottom, Container, MessageContainer } from './styles';
 
 interface ContactProps {
   messager: boolean;
-  message: string;
+  children?: React.ReactElement | string;
 }
 
 export const Message = (props: ContactProps) => {
-  const { messager, message } = props;
+  const { children, messager } = props;
+
+  let message = children;
+  if (typeof children === 'string') {
+    message = <MessageContainer>{message}</MessageContainer>;
+  }
+
   return (
-    <Container>
-      <MessageContainer messager={messager}>{message}</MessageContainer>
+    <Container messager={messager}>
+      {message}
       <ArrowBottom messager={messager} />
     </Container>
   );

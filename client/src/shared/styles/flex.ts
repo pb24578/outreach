@@ -13,3 +13,7 @@ export const FlexCenter = styled(FlexRow)`
   align-items: center;
   justify-content: center;
 `;
+
+export const FlexTen = styled.div`
+  flex: 0.1;
+`;
