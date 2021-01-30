@@ -31,33 +31,33 @@ const ArrowRight = styled.div<SelectedProps>`
 `;
 
 const Profile = styled(FlexCenter)`
-  width: 100px;
-  height: 100px;
+  flex: 0.3;
+  height: 100%;
   border-radius: 50%;
   background-color: ${(props) => props.theme.colors.secondary};
 `;
 
 const ContactIcon = styled.img`
-  width: 40%
+  width: 40%;
   height: 57%;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `;
 
 const ChatContent = styled(FlexColumn)`
+  flex: 0.7;
   margin-left: 20px;
 `;
 
 const Name = styled.h3<SelectedProps>`
   margin: 0;
-  width: 190px;
-  height: 42px;
+  width: 100%;
   font-size: 36px;
   color: ${(props) => (props.selected ? props.theme.colors.primary : props.theme.colors.secondary)};
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
 const RecentMessage = styled.div<SelectedProps>`
-  width: 250px;
+  width: 100%;
   font-size: 18px;
   white-space: nowrap;
   overflow: hidden;
