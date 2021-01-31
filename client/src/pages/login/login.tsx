@@ -10,7 +10,7 @@ const Login = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    onAuthUIStateChange((_, authData) => {
+    onAuthUIStateChange((authState, authData) => {
       dispatch(setUser(authData));
     });
   }, []);
