@@ -3,7 +3,9 @@ type BusinessOwner @model {
  firstName: String!
  lastName: String!
  businessName: String!
- bio: String!
+ bio: String
+ tags: [String!]
+ storyBio: String
  minorityOwned: Boolean!
  loans: [Loan!] @connection(name: "BusinessOwnerLoans")
  chatRooms: [ChatRoom!] @connection(name: "BusinessOwnerChatRooms")
@@ -20,7 +22,8 @@ type Investor @model {
  id: ID!
  firstName: String!
  lastName: String!
- bio: String!
+ bio: String
+ tags: [String!]
  minMaxLoan: [Float!]
  loans: [Loan!] @connection(name: "InvestorLoans")
  chatRooms: [ChatRoom!] @connection(name: "InvestorChatRooms")
