@@ -16,9 +16,9 @@ interface HeaderProps {
   photo: string;
   isProfile: boolean;
   isInvestor: boolean;
-  isVerfied: boolean;
+  isVerified: boolean;
   firstName: string;
-  lastname: string;
+  lastName: string;
   business: string;
   memberSince: string;
 }
@@ -58,25 +58,25 @@ const getHeaderType = (isProfile: boolean, isInvestor: boolean) => {
 const generateContent = (
   type: number,
   photo: string,
-  isVerfied: boolean,
+  isVerified: boolean,
   firstName: string,
-  lastname: string,
+  lastName: string,
   business: string,
   memberSince: string,
 ) => {
   const image = <CircularImgBig photo={photo} />;
   const title = (text: string) => <h1>{text}</h1>;
-  const subtitle = (text: string) => <h2>Member Since {text}</h2>;
+  const subtitle = (text: string) => <h2>{text}</h2>;
 
   switch (type) {
     case 0: // investorProfile
       return (
         <ProfileContent>
           {image}
-          <div>
-            {title(`${firstName} ${lastname}`)}
+          <div className="TextInfo">
+            {title(`${firstName} ${lastName}`)}
             {subtitle('Investor')}
-            {isVerfied && <VerifiedText text="Verified Profile" />}
+            {isVerified && <VerifiedText text="Verified Profile" />}
           </div>
         </ProfileContent>
       );
@@ -84,10 +84,10 @@ const generateContent = (
       return (
         <ProfileContent>
           {image}
-          <div>
-            {title(`${firstName} ${lastname}`)}
+          <div className="TextInfo">
+            {title(`${firstName} ${lastName}`)}
             {subtitle(business)}
-            {isVerfied && <VerifiedText text="Verified Minority-Owned Business Owner" />}
+            {isVerified && <VerifiedText text="Verified Minority-Owned Business Owner" />}
           </div>
         </ProfileContent>
       );
@@ -95,9 +95,9 @@ const generateContent = (
     case 3: // businessDashboard
       return (
         <DashboardContent>
-          <DashboardVerifiedWrapper>{isVerfied && <VerifiedText text="Verified Profile" />}</DashboardVerifiedWrapper>
+          <DashboardVerifiedWrapper>{isVerified && <VerifiedText text="Verified Profile" />}</DashboardVerifiedWrapper>
           {title('My Dashboard')}
-          {subtitle(memberSince)}
+          {subtitle(`Member Since ${memberSince}`)}
         </DashboardContent>
       );
     default:
@@ -111,9 +111,9 @@ const Header = ({
   photo,
   isProfile,
   isInvestor,
-  isVerfied,
+  isVerified,
   firstName,
-  lastname,
+  lastName,
   business,
   memberSince,
 }: HeaderProps) => {
@@ -123,7 +123,7 @@ const Header = ({
     <HeaderWrapper photo={photo}>
       <HeaderNav>{generateNavLinks(links)}</HeaderNav>
       <HeaderContent>
-        {generateContent(headerType, photo, isVerfied, firstName, lastname, business, memberSince)}
+        {generateContent(headerType, photo, isVerified, firstName, lastName, business, memberSince)}
       </HeaderContent>
     </HeaderWrapper>
   );

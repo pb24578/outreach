@@ -10,7 +10,24 @@ import Kanye from '../../assets/kanye.jpg';
 
 const { setUser } = loginActions;
 
-const DUMMY_DATA: object = {
+type LinkObj = {
+  display: string;
+  href: string;
+};
+
+interface HeaderProps {
+  links: LinkObj[];
+  photo: string;
+  isProfile: boolean;
+  isInvestor: boolean;
+  isVerified: boolean;
+  firstName: string;
+  lastName: string;
+  business: string;
+  memberSince: string;
+}
+
+const DUMMY_DATA: HeaderProps = {
   links: [{ display: 'hello', href: '/' }],
   photo: Kanye,
   isProfile: true,
@@ -33,9 +50,18 @@ const Profile = () => {
 
   return (
     <div>
-      <Header links={DUMMY_DATA} />
+      <Header
+        links={DUMMY_DATA.links}
+        photo={DUMMY_DATA.photo}
+        isProfile
+        isInvestor={DUMMY_DATA.isInvestor}
+        isVerified={DUMMY_DATA.isVerified}
+        firstName={DUMMY_DATA.firstName}
+        lastName={DUMMY_DATA.lastName}
+        business={DUMMY_DATA.business}
+        memberSince={DUMMY_DATA.memberSince}
+      />
       <AmplifySignOut />
-      Hello World!
     </div>
   );
 };
