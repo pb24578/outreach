@@ -41,7 +41,7 @@ const Onboarding = () => {
     minMaxLoan: null,
   });
   const [errorMessages, setErrorMessages] = useState({});
-  const userId = useSelector(getUser)?.username;
+  const user = useSelector(getUser);
 
   const validateThenSubmitBusinessOwner = () => {
     const newErrorMessages = {
@@ -58,11 +58,10 @@ const Onboarding = () => {
       const businessOwnerInput = {
         ...newBusinessOwner,
         ...fullName,
-        id: userId,
         minorityOwned: isMinorityOwned,
         tags: splitTags,
       };
-      createBusinessOwner(businessOwnerInput);
+      createBusinessOwner(businessOwnerInput, user);
     }
   };
 
@@ -80,10 +79,9 @@ const Onboarding = () => {
       const investorInput = {
         ...newInvestor,
         ...fullName,
-        id: userId,
         tags: splitTags,
       };
-      createInvestor(investorInput);
+      createInvestor(investorInput, user);
     }
   };
 
