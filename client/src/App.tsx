@@ -54,6 +54,9 @@ const App = () => {
     return <div />;
   }
 
+  /**
+   * Re-directs the logged-in user to either the onboarding or dashboard.
+   */
   const redirectSession = () => {
     if (redirectOnboarding) {
       return <Redirect to="/onboarding" />;
@@ -64,6 +67,9 @@ const App = () => {
     return null;
   };
 
+  /**
+   * Re-directs the not logged-in user to the landing or logged-in user to the onboarding.
+   */
   const redirectNoSession = () => {
     if (redirectLanding) {
       return <Redirect to="/" />;
