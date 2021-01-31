@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Dashboard from '../../../pages/dashboard';
 import { FlexRow, FlexColumn, FlexCenter } from '../../styles/flex';
 
 interface PhotoProps {
