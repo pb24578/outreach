@@ -47,3 +47,27 @@ const createMessageMutation = `
     }
   }
 `;
+
+const getChatRoomQuery = `
+  query GetChatRoom($id: ID!) {
+    getChatRoom(id: $id) {
+      businessOwner {
+        id
+        firstName
+        lastName
+      }
+      investor {
+        id
+        firstName
+        lastName
+      }
+      messages {
+        items {
+          id
+          senderId
+          createdAt
+        }
+      }
+    }
+  }
+`;
