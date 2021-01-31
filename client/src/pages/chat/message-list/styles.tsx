@@ -3,6 +3,6 @@ import { FlexColumn } from '../../../shared/styles';
 
 export const Container = styled(FlexColumn)`
   height: 100%;
-  width: 40vw;
+  width: 60vw;
   overflow-y: auto;
 `;

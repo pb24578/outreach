@@ -1,12 +1,14 @@
 import styled from 'styled-components';
+import { FlexRow } from '../../../shared/styles';
 
 interface MessagerProps {
   messager: boolean;
 }
 
-export const Container = styled.div<MessagerProps>`
-  display: inline-block;
+export const Container = styled(FlexRow)<MessagerProps>`
+  align-self: ${(props) => (props.messager ? 'flex-end' : 'flex-start')};
   position: relative;
+  margin: 8px 0px;
   padding: 15px 20px;
   max-width: ${(props) => (props.messager ? '30%' : '60%')};
   color: ${(props) => props.theme.colors.primary};
