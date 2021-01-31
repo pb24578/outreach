@@ -4,14 +4,13 @@ import { AmplifySignOut } from '@aws-amplify/ui-react';
 import { onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { actions as loginActions } from '../login';
 
-const { setAuthState, setUser } = loginActions;
+const { setUser } = loginActions;
 
 const Profile = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    onAuthUIStateChange((nextAuthState, authData) => {
-      dispatch(setAuthState(nextAuthState));
+    onAuthUIStateChange((_, authData) => {
       dispatch(setUser(authData));
     });
   }, []);

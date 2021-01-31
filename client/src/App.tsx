@@ -1,26 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import './shared/styles/global.css';
+
+// AWS API/Authentication
 import Amplify from 'aws-amplify';
 import { AuthState } from '@aws-amplify/ui-components';
-import Login, { actions as loginActions, getAuthState, getUserCredentials } from './pages/login';
-import Theme from './shared/styles/theme';
+import awsconfig from './aws-exports';
+
+// Pages
 import Landing from './pages/landing';
+import Login, { actions as loginActions, getAuthState, getUserCredentials, shouldOnboarding } from './pages/login';
+import Onboarding from './pages/onboarding';
 import Dashboard from './pages/dashboard';
 import Profile from './pages/profile';
 import Chat from './pages/chat';
-import awsconfig from './aws-exports';
 
-const { setAuthState, setUser } = loginActions;
+// Styles
+import './shared/styles/global.css';
+import Theme from './shared/styles/theme';
+
+const { setUser } = loginActions;
 
 Amplify.configure(awsconfig);
 
 const App = () => {
   const dispatch = useDispatch();
   const authState = useSelector(getAuthState);
-  const [userLoading, setUserLoading] = useState(true);
+  const mustOnboarding = useSelector(shouldOnboarding);
   const isSignedIn = authState === AuthState.SignedIn;
+  const [userLoading, setUserLoading] = useState(true);
+  const redirectLanding = !userLoading && !isSignedIn;
+  const redirectOnboarding = !userLoading && mustOnboarding;
+  const redirectDashboard = isSignedIn;
 
   /**
    * Loads the user and updates the state if the user is signed-in.
@@ -28,7 +39,6 @@ const App = () => {
   const setSignedInState = async () => {
     const user = await getUserCredentials();
     if (user) {
-      dispatch(setAuthState(AuthState.SignedIn));
       dispatch(setUser(user));
     }
     setUserLoading(false);
@@ -49,20 +59,33 @@ const App = () => {
       <Theme>
         <Switch>
           <Route exact path="/">
-            <Landing />
+            {() => {
+              if (redirectOnboarding) {
+                return <Redirect to="/onboarding" />;
+              }
+              if (redirectDashboard) {
+                return <Redirect to="/dashboard" />;
+              }
+              return <Landing />;
+            }}
           </Route>
           <Route exact path="/login">
-            <Login />
+            {() => {
+              if (redirectOnboarding) {
+                return <Redirect to="/onboarding" />;
+              }
+              if (redirectDashboard) {
+                return <Redirect to="/dashboard" />;
+              }
+              return <Login />;
+            }}
           </Route>
-          <Route exact path="/dashboard">
-            {userLoading || isSignedIn ? <Dashboard /> : <Redirect to="/" />}
+          <Route exact path="/onboarding">
+            <Onboarding />
           </Route>
-          <Route exact path="/profile">
-            {userLoading || isSignedIn ? <Profile /> : <Redirect to="/" />}
-          </Route>
-          <Route exact path="/chat">
-            {userLoading || isSignedIn ? <Chat /> : <Redirect to="/" />}
-          </Route>
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/chat" component={Chat} />
         </Switch>
       </Theme>
     </BrowserRouter>

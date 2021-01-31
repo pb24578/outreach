@@ -19,6 +19,7 @@
     "async-selector-kit": "^2.0.0",
     "aws-amplify": "^3.3.15",
     "jwt-decode": "^3.1.2",
+    "rc-slider": "^9.7.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",

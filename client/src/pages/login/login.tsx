@@ -1,28 +1,19 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { AmplifyAuthenticator, AmplifySignUp, AmplifySignIn } from '@aws-amplify/ui-react';
-import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
-import { getAuthState, getUser } from './selectors';
+import { onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { actions } from './reducer';
 
-const { setAuthState, setUser } = actions;
+const { setUser } = actions;
 
 const Login = () => {
   const dispatch = useDispatch();
-  const authState = useSelector(getAuthState);
-  const user = useSelector(getUser);
 
   useEffect(() => {
-    onAuthUIStateChange((nextAuthState, authData) => {
-      dispatch(setAuthState(nextAuthState));
+    onAuthUIStateChange((_, authData) => {
       dispatch(setUser(authData));
     });
   }, []);
-
-  if (authState === AuthState.SignedIn && user) {
-    return <Redirect to="/dashboard" />;
-  }
 
   return (
     <AmplifyAuthenticator>
