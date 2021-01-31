@@ -26,6 +26,7 @@ const validationErrors = {
   firstName: 'You must submit your first name.',
   lastName: 'You must submit your last name.',
   businessName: 'You must submit your business name.',
+  location: 'You must submit your location.',
   tags: 'Your tags must have at least 1 hashtag.',
 };
 
@@ -34,8 +35,20 @@ const Onboarding = () => {
   const [isInvestor, setIsInvestor] = useState(false);
   const [isMinorityOwned, setIsMinorityOwned] = useState(false);
   const [fullName, setFullName] = useState({ firstName: '', lastName: '' });
-  const [newBusinessOwner, setNewBusinessOwner] = useState({ businessName: '', bio: '', tags: '', storyBio: '' });
-  const [newInvestor, setNewInvestor] = useState<{ bio: string; tags: string; minMaxLoan: number[] | null }>({
+  const [newBusinessOwner, setNewBusinessOwner] = useState({
+    businessName: '',
+    location: '',
+    bio: '',
+    tags: '',
+    storyBio: '',
+  });
+  const [newInvestor, setNewInvestor] = useState<{
+    location: string;
+    bio: string;
+    tags: string;
+    minMaxLoan: number[] | null;
+  }>({
+    location: '',
     bio: '',
     tags: '',
     minMaxLoan: null,
@@ -48,6 +61,7 @@ const Onboarding = () => {
       firstName: fullName.firstName.length > 0 ? null : validationErrors.firstName,
       lastName: fullName.lastName.length > 0 ? null : validationErrors.lastName,
       businessName: newBusinessOwner.businessName.length > 0 ? null : validationErrors.businessName,
+      location: newBusinessOwner.location.length > 0 ? null : validationErrors.location,
       tags: !newBusinessOwner.tags.length || newBusinessOwner.tags.includes('#') ? null : validationErrors.tags,
     };
     setErrorMessages(newErrorMessages);
@@ -69,6 +83,7 @@ const Onboarding = () => {
     const newErrorMessages = {
       firstName: fullName.firstName.length > 0 ? null : validationErrors.firstName,
       lastName: fullName.lastName.length > 0 ? null : validationErrors.lastName,
+      location: newInvestor.location.length > 0 ? null : validationErrors.location,
       tags: !newInvestor.tags.length || newInvestor.tags.includes('#') ? null : validationErrors.tags,
     };
     setErrorMessages(newErrorMessages);
@@ -148,6 +163,11 @@ const Onboarding = () => {
             placeholder="Your answer here..."
             onBlur={(e) => setNewBusinessOwner({ ...newBusinessOwner, businessName: e.target.value })}
           />
+          <h3>Where are you located?</h3>
+          <TextInput
+            placeholder="Enter your location..."
+            onBlur={(e) => setNewBusinessOwner({ ...newBusinessOwner, location: e.target.value })}
+          />
           <h3>Tell us about what you do!</h3>
           <MultilineTextInput
             placeholder="Write your bio here..."
@@ -195,6 +215,11 @@ const Onboarding = () => {
 
       {isInvestor && (
         <UserSection>
+          <h3>Where are you located?</h3>
+          <TextInput
+            placeholder="Enter your location..."
+            onBlur={(e) => setNewInvestor({ ...newInvestor, location: e.target.value })}
+          />
           <h3>How much are you willing to loan per client?</h3>
           <RangeWithTooltip
             step={100}

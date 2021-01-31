@@ -12,6 +12,7 @@ const getBusinessOwner = `
       lastName
       businessName
       minorityOwned
+      location
       bio
       storyBio
       tags
@@ -47,6 +48,7 @@ const getInvestor = `
       id
       firstName
       lastName
+      location
       minMaxLoan
       bio
       tags

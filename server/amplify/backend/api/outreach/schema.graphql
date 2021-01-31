@@ -3,6 +3,7 @@ type BusinessOwner @model {
  firstName: String!
  lastName: String!
  businessName: String!
+ location: String!
  bio: String
  tags: [String!]
  storyBio: String
@@ -22,6 +23,7 @@ type Investor @model {
  id: ID!
  firstName: String!
  lastName: String!
+ location: String!
  bio: String
  tags: [String!]
  minMaxLoan: [Float!]

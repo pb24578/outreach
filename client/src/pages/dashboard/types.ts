@@ -5,6 +5,7 @@ export interface BusinessOwner {
   firstName: string;
   lastName: string;
   businessName: string;
+  location: string;
   minorityOwned: boolean;
   bio: string;
   storyBio: string;
@@ -16,6 +17,7 @@ export interface Investor {
   id: string;
   firstName: string;
   lastName: string;
+  location: string;
   minMaxLoan: number[];
   bio: string;
   tags: string[];

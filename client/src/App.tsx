@@ -9,7 +9,13 @@ import awsconfig from './aws-exports';
 
 // Pages
 import Landing from './pages/landing';
-import Login, { actions as loginActions, getAuthState, getUserCredentials, shouldOnboarding } from './pages/login';
+import Login, {
+  actions as loginActions,
+  getAuthState,
+  getGroups,
+  getUserCredentials,
+  shouldOnboarding,
+} from './pages/login';
 import Onboarding from './pages/onboarding';
 import Dashboard from './pages/dashboard';
 import Profile from './pages/profile';
@@ -32,6 +38,10 @@ const App = () => {
   const redirectLanding = !isSignedIn;
   const redirectOnboarding = isSignedIn && mustOnboarding;
   const redirectDashboard = isSignedIn && !mustOnboarding;
+
+  // for debugging - find out how to retain group after refreshing, after onboarding
+  const group = useSelector(getGroups);
+  console.log(group);
 
   /**
    * Loads the user and updates the state if the user is signed-in.
