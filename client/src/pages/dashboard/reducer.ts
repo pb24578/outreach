@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { BusinessOwner, Investor } from '../dashboard';
 
-export const initialState = {
+export const initialState: { businessOwner: BusinessOwner | null; investor: Investor | null } = {
   businessOwner: null,
   investor: null,
 };
@@ -9,10 +10,10 @@ const slice = createSlice({
   name: 'dashboard',
   initialState,
   reducers: {
-    setBusinessOwner: (state, action: PayloadAction<any>) => {
+    setBusinessOwner: (state, action: PayloadAction<BusinessOwner>) => {
       state.businessOwner = action.payload;
     },
-    setInvestor: (state, action: PayloadAction<any>) => {
+    setInvestor: (state, action: PayloadAction<Investor>) => {
       state.investor = action.payload;
     },
   },
