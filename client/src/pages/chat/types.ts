@@ -1,12 +1,13 @@
 export interface ChatRoom {
+  id: string;
   businessOwner: ChatParticipant;
   investor: ChatParticipant;
   messages: { items: Message[] };
 }
 
 interface ChatParticipant {
-  firstName: string;
   id: string;
+  firstName: string;
   lastName: string;
 }
 
