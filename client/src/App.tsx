@@ -25,13 +25,13 @@ Amplify.configure(awsconfig);
 
 const App = () => {
   const dispatch = useDispatch();
+  const [userLoading, setUserLoading] = useState(true);
   const authState = useSelector(getAuthState);
   const mustOnboarding = useSelector(shouldOnboarding);
   const isSignedIn = authState === AuthState.SignedIn;
-  const [userLoading, setUserLoading] = useState(true);
-  const redirectLanding = !userLoading && !isSignedIn;
-  const redirectOnboarding = !userLoading && mustOnboarding;
-  const redirectDashboard = isSignedIn;
+  const redirectLanding = !isSignedIn;
+  const redirectOnboarding = isSignedIn && mustOnboarding;
+  const redirectDashboard = isSignedIn && !mustOnboarding;
 
   /**
    * Loads the user and updates the state if the user is signed-in.
@@ -54,38 +54,56 @@ const App = () => {
     return <div />;
   }
 
+  const redirectSession = () => {
+    if (redirectOnboarding) {
+      return <Redirect to="/onboarding" />;
+    }
+    if (redirectDashboard) {
+      return <Redirect to="/dashboard" />;
+    }
+    return null;
+  };
+
+  const redirectNoSession = () => {
+    if (redirectLanding) {
+      return <Redirect to="/" />;
+    }
+    if (redirectOnboarding) {
+      return <Redirect to="/onboarding" />;
+    }
+    return null;
+  };
+
   return (
     <BrowserRouter>
       <Theme>
         <Switch>
           <Route exact path="/">
-            {() => {
-              if (redirectOnboarding) {
-                return <Redirect to="/onboarding" />;
-              }
-              if (redirectDashboard) {
-                return <Redirect to="/dashboard" />;
-              }
-              return <Landing />;
-            }}
+            {redirectSession() || <Landing />}
           </Route>
           <Route exact path="/login">
+            {redirectSession() || <Login />}
+          </Route>
+          <Route exact path="/onboarding">
             {() => {
-              if (redirectOnboarding) {
-                return <Redirect to="/onboarding" />;
+              if (redirectLanding) {
+                return <Redirect to="/" />;
               }
               if (redirectDashboard) {
                 return <Redirect to="/dashboard" />;
               }
-              return <Login />;
+              return <Onboarding />;
             }}
           </Route>
-          <Route exact path="/onboarding">
-            <Onboarding />
+          <Route exact path="/dashboard">
+            {redirectNoSession() || <Dashboard />}
           </Route>
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/profile" component={Profile} />
-          <Route exact path="/chat" component={Chat} />
+          <Route exact path="/profile">
+            {redirectNoSession() || <Profile />}
+          </Route>
+          <Route exact path="/chat">
+            {redirectNoSession() || <Chat />}
+          </Route>
         </Switch>
       </Theme>
     </BrowserRouter>
