@@ -1,17 +1,18 @@
 import React from 'react';
-import { FlexColumn } from '../../shared/styles';
 import { ContactList } from './contact-list';
 import { MessageList } from './message-list';
 import { MessageBar } from './message-bar';
-import { Container } from './styles';
+import { Container, ContactContainer, MessageContainer } from './styles';
 
 const Chat = () => (
   <Container>
-    <ContactList />
-    <FlexColumn>
+    <ContactContainer>
+      <ContactList />
+    </ContactContainer>
+    <MessageContainer>
       <MessageList />
       <MessageBar />
-    </FlexColumn>
+    </MessageContainer>
   </Container>
 );
 
