@@ -102,13 +102,14 @@ export const UserSection = styled.div`
 
 export const SubmitContainer = styled(FlexCenter)`
   flex-direction: column;
+  margin-bottom: 50px;
 `;
 
 export const UpdateInfo = styled.button`
   width: 200px;
   padding: 5px;
   background-color: ${(props) => props.theme.colors.secondary};
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   border: none;
   font-size: 24px;
   cursor: pointer;
@@ -120,4 +121,9 @@ export const UpdateInfo = styled.button`
   &:hover {
     filter: saturate(1.5);
   }
+`;
+
+export const ErrorMessage = styled.div`
+  color: red;
+  margin-bottom: 10px;
 `;

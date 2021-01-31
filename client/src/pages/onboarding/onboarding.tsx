@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Range, createSliderWithTooltip } from 'rc-slider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import { faCaretRight, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import {
   Wrapper,
   Title,
@@ -13,6 +13,7 @@ import {
   UserSection,
   SubmitContainer,
   UpdateInfo,
+  ErrorMessage,
 } from './styles';
 import 'rc-slider/assets/index.css';
 
@@ -48,7 +49,15 @@ const Onboarding = () => {
     setErrorMessages(newErrorMessages);
 
     if (Object.values(newErrorMessages).every((error) => !error)) {
-      console.log('success');
+      let splitTags = newBusinessOwner.tags.split('#');
+      splitTags = splitTags.filter((tag) => tag.length > 0).map((tag) => tag.replace(/ /g, ''));
+      const businessOwnerInput = {
+        ...newBusinessOwner,
+        ...fullName,
+        minorityOwned: isMinorityOwned,
+        tags: splitTags,
+      };
+      console.log(businessOwnerInput);
     }
   };
 
@@ -56,12 +65,19 @@ const Onboarding = () => {
     const newErrorMessages = {
       firstName: fullName.firstName.length > 0 ? null : validationErrors.firstName,
       lastName: fullName.lastName.length > 0 ? null : validationErrors.lastName,
-      tags: !newBusinessOwner.tags.length || newBusinessOwner.tags.includes('#') ? null : validationErrors.tags,
+      tags: !newInvestor.tags.length || newInvestor.tags.includes('#') ? null : validationErrors.tags,
     };
     setErrorMessages(newErrorMessages);
 
     if (Object.values(newErrorMessages).every((error) => !error)) {
-      console.log('success');
+      let splitTags = newInvestor.tags.split('#');
+      splitTags = splitTags.filter((tag) => tag.length > 0).map((tag) => tag.replace(/ /g, ''));
+      const investorInput = {
+        ...newInvestor,
+        ...fullName,
+        tags: splitTags,
+      };
+      console.log(investorInput);
     }
   };
 
@@ -81,6 +97,7 @@ const Onboarding = () => {
           onChange={(e) => {
             setIsBusinessOwner(e.target.checked);
             if (isInvestor) setIsInvestor(false);
+            setErrorMessages({});
           }}
         />
         <span>I&#39;m a small business owner in need of some help</span>
@@ -91,6 +108,7 @@ const Onboarding = () => {
           onChange={(e) => {
             setIsInvestor(e.target.checked);
             if (isBusinessOwner) setIsBusinessOwner(false);
+            setErrorMessages({});
           }}
         />
         <span>I&#39;m an investor looking for passionate people to invest in</span>
@@ -146,6 +164,19 @@ const Onboarding = () => {
             <UpdateInfo onClick={validateThenSubmitBusinessOwner}>
               <span>Update Info</span> <FontAwesomeIcon icon={faCaretRight} size="lg" />
             </UpdateInfo>
+            {!Object.values(errorMessages).every((error) => !error) && (
+              <div>
+                {Object.values(errorMessages).map(
+                  (error) =>
+                    typeof error === 'string' && (
+                      <ErrorMessage key={error}>
+                        <FontAwesomeIcon icon={faExclamationTriangle} />
+                        {error}
+                      </ErrorMessage>
+                    ),
+                )}
+              </div>
+            )}
           </SubmitContainer>
           <span style={{ color: 'gray' }}>
             * Minority-owned business means a business that is at least 51 percent owned by one or more minority
@@ -198,6 +229,19 @@ const Onboarding = () => {
             <UpdateInfo onClick={validateThenSubmitInvestor}>
               <span>Update Info</span> <FontAwesomeIcon icon={faCaretRight} size="lg" />
             </UpdateInfo>
+            {!Object.values(errorMessages).every((error) => !error) && (
+              <div>
+                {Object.values(errorMessages).map(
+                  (error) =>
+                    typeof error === 'string' && (
+                      <ErrorMessage key={error}>
+                        <FontAwesomeIcon icon={faExclamationTriangle} />
+                        {error}
+                      </ErrorMessage>
+                    ),
+                )}
+              </div>
+            )}
           </SubmitContainer>
         </UserSection>
       )}
