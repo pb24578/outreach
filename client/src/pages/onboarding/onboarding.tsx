@@ -1,8 +1,9 @@
 /* eslint-disable max-len */
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Range, createSliderWithTooltip } from 'rc-slider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretRight, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { faCaretRight, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import {
   Wrapper,
   Title,
@@ -16,6 +17,8 @@ import {
   ErrorMessage,
 } from './styles';
 import 'rc-slider/assets/index.css';
+import { createBusinessOwner, createInvestor } from './actions';
+import { getUser } from '../login';
 
 const RangeWithTooltip = createSliderWithTooltip(Range);
 
@@ -38,6 +41,7 @@ const Onboarding = () => {
     minMaxLoan: null,
   });
   const [errorMessages, setErrorMessages] = useState({});
+  const userId = useSelector(getUser)?.username;
 
   const validateThenSubmitBusinessOwner = () => {
     const newErrorMessages = {
@@ -54,10 +58,11 @@ const Onboarding = () => {
       const businessOwnerInput = {
         ...newBusinessOwner,
         ...fullName,
+        id: userId,
         minorityOwned: isMinorityOwned,
         tags: splitTags,
       };
-      console.log(businessOwnerInput);
+      createBusinessOwner(businessOwnerInput);
     }
   };
 
@@ -75,9 +80,10 @@ const Onboarding = () => {
       const investorInput = {
         ...newInvestor,
         ...fullName,
+        id: userId,
         tags: splitTags,
       };
-      console.log(investorInput);
+      createInvestor(investorInput);
     }
   };
 
@@ -170,7 +176,7 @@ const Onboarding = () => {
                   (error) =>
                     typeof error === 'string' && (
                       <ErrorMessage key={error}>
-                        <FontAwesomeIcon icon={faExclamationTriangle} />
+                        <FontAwesomeIcon icon={faExclamationCircle} />
                         {error}
                       </ErrorMessage>
                     ),
@@ -235,7 +241,7 @@ const Onboarding = () => {
                   (error) =>
                     typeof error === 'string' && (
                       <ErrorMessage key={error}>
-                        <FontAwesomeIcon icon={faExclamationTriangle} />
+                        <FontAwesomeIcon icon={faExclamationCircle} />
                         {error}
                       </ErrorMessage>
                     ),

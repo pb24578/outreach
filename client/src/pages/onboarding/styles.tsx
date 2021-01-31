@@ -118,6 +118,10 @@ export const UpdateInfo = styled.button`
     margin-right: 10px;
   }
 
+  &:focus {
+    outline: none;
+  }
+
   &:hover {
     filter: saturate(1.5);
   }
