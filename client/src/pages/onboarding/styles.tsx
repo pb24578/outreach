@@ -97,7 +97,7 @@ export const CheckboxContainer = styled(FlexRow)`
 `;
 
 export const UserSection = styled.div`
-  margin-top: 50px;
+  margin: 50px 0;
 `;
 
 export const SubmitContainer = styled(FlexCenter)`
