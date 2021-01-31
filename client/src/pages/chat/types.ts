@@ -1,3 +1,7 @@
+export interface Chat {
+  selectedChatId: string;
+}
+
 export interface ChatRoom {
   id: string;
   businessOwner: ChatParticipant;

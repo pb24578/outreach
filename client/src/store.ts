@@ -1,12 +1,12 @@
 import { createMiddleware, createReducer } from 'async-selector-kit';
 import { applyMiddleware, createStore, combineReducers } from '@reduxjs/toolkit';
 import { reducer as loginReducer } from './pages/login/reducer';
-import { reducer as dashboardReducer } from './pages/dashboard/reducer';
+import { reducer as chatReducer } from './pages/chat/reducer';
 
 const rootReducer = combineReducers({
   AsyncSelectorKit: createReducer(),
   login: loginReducer,
-  dashboard: dashboardReducer,
+  chat: chatReducer,
 });
 
 const middlewares = [createMiddleware()];

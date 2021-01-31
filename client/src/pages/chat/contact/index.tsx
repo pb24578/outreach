@@ -1,7 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ContactImage from '../../../assets/chat/contact.png';
-import { actions as dashboardActions, getSelectedChatId } from '../../dashboard';
+import { getSelectedChatId } from '../selectors';
+import { actions } from '../reducer';
 import {
   ArrowRight,
   BusinessLocation,
@@ -19,7 +20,7 @@ interface ContactProps {
   location: string;
 }
 
-const { setSelectedChat } = dashboardActions;
+const { setSelectedChat } = actions;
 
 export const Contact = (props: ContactProps) => {
   const { id, location, name } = props;

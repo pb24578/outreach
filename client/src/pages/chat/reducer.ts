@@ -1,12 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Dashboard } from './types';
+import { Chat } from './types';
 
-export const initialState: Dashboard = {
+export const initialState: Chat = {
   selectedChatId: '',
 };
 
 const slice = createSlice({
-  name: 'dashboard',
+  name: 'chat',
   initialState,
   reducers: {
     setSelectedChat: (state, action: PayloadAction<string>) => {

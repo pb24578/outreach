@@ -1,9 +1,5 @@
 import { ChatRoom } from '../chat';
 
-export interface Dashboard {
-  selectedChatId: string;
-}
-
 export interface BusinessOwner {
   id: string;
   firstName: string;
