@@ -3,10 +3,12 @@
 import { API, graphqlOperation } from 'aws-amplify';
 import AWS from 'aws-sdk';
 import { createAsyncAction } from 'async-selector-kit';
-import { actions, CognitoUser } from '../login';
+import { actions as loginActions, CognitoUser } from '../login';
+import { actions as dashboardActions } from '../dashboard';
 import { Groups } from '../../shared/constants';
 
-const { setGroups } = actions;
+const { setGroups } = loginActions;
+const { setBusinessOwner, setInvestor } = dashboardActions;
 
 const createBusinessOwnerMutation = `
   mutation CreateBusinessOwner($input: CreateBusinessOwnerInput!) {
@@ -15,9 +17,25 @@ const createBusinessOwnerMutation = `
       firstName
       lastName
       businessName
+      minorityOwned
       bio
       storyBio
       tags
+      chatRooms {
+        items {
+          investor {
+            id
+            firstName
+            lastName
+          }
+          messages {
+            items {
+              id
+              senderId
+            }
+          }
+        }
+      }
     }
   }
 `;
@@ -31,6 +49,21 @@ const createInvestorMutation = `
       minMaxLoan
       bio
       tags
+      chatRooms {
+        items {
+          businessOwner {
+            id
+            firstName
+            lastName
+          }
+          messages {
+            items {
+              id
+              senderId
+            }
+          }
+        }
+      }
     }
   }
 `;
@@ -51,7 +84,7 @@ export const [createBusinessOwner] = createAsyncAction({
           input: { id: user?.username, ...businessOwnerInput },
         }),
       );
-      const businessOwnerData = businessOwner.data.createBusinessOwner;
+      setBusinessOwner(businessOwner.data.createBusinessOwner);
       if (user && user.pool && user.pool.userPoolId && user.username) {
         const cognitoParams = {
           UserPoolId: user.pool.userPoolId,
@@ -79,7 +112,7 @@ export const [createInvestor] = createAsyncAction({
           input: { id: user?.username, ...investorInput },
         }),
       );
-      const investorData = investor.data.createInvestor;
+      setInvestor(investor.data.createInvestor);
       if (user && user.pool && user.pool.userPoolId && user.username) {
         const cognitoParams = {
           UserPoolId: user.pool.userPoolId,
