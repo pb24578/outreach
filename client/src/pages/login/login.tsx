@@ -11,7 +11,7 @@ const Login = () => {
 
   useEffect(() => {
     onAuthUIStateChange((authState, authData) => {
-      dispatch(setUser(authData));
+      dispatch(setUser({ authState, user: authData }));
     });
   }, []);
 

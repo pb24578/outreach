@@ -13,16 +13,16 @@ const slice = createSlice({
   name: 'login',
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<any | undefined>) => {
-      if (!action.payload) {
+    setUser: (state, action: PayloadAction<{ authState: AuthState; user: any | undefined }>) => {
+      if (!action.payload.user) {
         // logging off the user
         state.authState = initialState.authState;
         state.user = initialState.user;
         state.groups = initialState.groups;
         return;
       }
-      state.user = action.payload;
-      state.authState = AuthState.SignedIn;
+      state.user = action.payload.user;
+      state.authState = action.payload.authState;
       if (state.user?.signInUserSession?.idToken.jwtToken) {
         // decode and set the user's groups
         type CognitoGroups = { ['cognito:groups']: string[] };
