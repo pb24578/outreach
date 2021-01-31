@@ -2,23 +2,23 @@ import React from 'react';
 import ContactImage from '../../../assets/chat/contact.png';
 import {
   ArrowRight,
+  BusinessLocation,
   ChatContent,
   Container,
   ContactContainer,
   ContactIcon,
   Name,
-  RecentMessage,
   Profile,
 } from './styles';
 
 interface ContactProps {
   selected: boolean;
   name: string;
-  message: string;
+  location: string;
 }
 
 export const Contact = (props: ContactProps) => {
-  const { message, name, selected } = props;
+  const { location, name, selected } = props;
   return (
     <Container>
       <ContactContainer selected={selected}>
@@ -27,7 +27,7 @@ export const Contact = (props: ContactProps) => {
         </Profile>
         <ChatContent>
           <Name selected={selected}>{name}</Name>
-          <RecentMessage selected={selected}>{message}</RecentMessage>
+          <BusinessLocation selected={selected}>{location}</BusinessLocation>
         </ChatContent>
       </ContactContainer>
       <ArrowRight selected={selected} />

@@ -14,7 +14,7 @@ const Chat = () => {
 
   return (
     <div>
-      <Contact message={contactMessage} name={name} selected />
+      <Contact location={contactMessage} name={name} selected />
       <Message messager={messager}>{message}</Message>
       <Message messager={messager}>
         <Offer messager={messager} name={name} price={price} apy={apy} />
