@@ -8,7 +8,7 @@ interface MessagerProps {
 export const Container = styled(FlexRow)<MessagerProps>`
   align-self: ${(props) => (props.messager ? 'flex-end' : 'flex-start')};
   position: relative;
-  margin: 8px 0px;
+  margin: 16px 0px;
   padding: 15px 20px;
   max-width: ${(props) => (props.messager ? '30%' : '60%')};
   color: ${(props) => props.theme.colors.primary};
