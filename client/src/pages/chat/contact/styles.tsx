@@ -6,12 +6,13 @@ interface SelectedProps {
 }
 
 export const Container = styled(FlexRow)`
+  margin: 8px 0px;
   color: ${(props) => props.theme.colors.primary};
 `;
 
 export const ContactContainer = styled(FlexRow)<SelectedProps>`
   align-items: center;
-  width: 408px;
+  width: 90%;
   height: 100px;
   border-top-left-radius: 48px;
   border-bottom-left-radius: 48px;
@@ -27,7 +28,7 @@ export const ArrowRight = styled.div<SelectedProps>`
 `;
 
 export const Profile = styled(FlexCenter)`
-  flex: 0.3;
+  width: 100px;
   height: 100%;
   border-radius: 50%;
   background-color: ${(props) => props.theme.colors.secondary};
@@ -40,7 +41,6 @@ export const ContactIcon = styled.img`
 `;
 
 export const ChatContent = styled(FlexColumn)`
-  flex: 0.7;
   margin-left: 20px;
 `;
 

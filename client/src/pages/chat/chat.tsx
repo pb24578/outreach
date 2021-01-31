@@ -1,5 +1,5 @@
 import React from 'react';
-import { Contact } from './contact';
+import { ContactList } from './contact-list';
 import { Message } from './message';
 import { Offer } from './offer';
 import { MessageBar } from './message-bar';
@@ -14,7 +14,7 @@ const Chat = () => {
 
   return (
     <div>
-      <Contact location={contactMessage} name={name} selected />
+      <ContactList />
       <Message messager={messager}>{message}</Message>
       <Message messager={messager}>
         <Offer messager={messager} name={name} price={price} apy={apy} />
