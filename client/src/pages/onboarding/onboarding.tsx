@@ -1,7 +1,19 @@
 /* eslint-disable max-len */
 import React, { useState } from 'react';
 import { Range, createSliderWithTooltip } from 'rc-slider';
-import { Wrapper, Title, CheckboxContainer } from './styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import {
+  Wrapper,
+  Title,
+  TextInput,
+  Checkbox,
+  MultilineTextInput,
+  CheckboxContainer,
+  UserSection,
+  SubmitContainer,
+  UpdateInfo,
+} from './styles';
 import 'rc-slider/assets/index.css';
 
 const RangeWithTooltip = createSliderWithTooltip(Range);
@@ -20,12 +32,11 @@ const Onboarding = () => {
         <h2>Tell Us a Bit About Yourself...</h2>
       </Title>
       <h3>What&#39;s your name?</h3>
-      <input placeholder="First Name" />
-      <input placeholder="Last Name" />
+      <TextInput placeholder="First Name" />
+      <TextInput placeholder="Last Name" />
       <h3>Who are you?</h3>
       <CheckboxContainer>
-        <input
-          type="checkbox"
+        <Checkbox
           checked={isBusinessOwner}
           onChange={(e) => {
             setIsBusinessOwner(e.target.checked);
@@ -35,8 +46,7 @@ const Onboarding = () => {
         <span>I&#39;m a small business owner in need of some help</span>
       </CheckboxContainer>
       <CheckboxContainer>
-        <input
-          type="checkbox"
+        <Checkbox
           checked={isInvestor}
           onChange={(e) => {
             setIsInvestor(e.target.checked);
@@ -47,43 +57,49 @@ const Onboarding = () => {
       </CheckboxContainer>
 
       {isBusinessOwner && (
-        <div>
-          As an app designed to help minoirty communities, we want the majority of our benefactors to be people in
-          disenfranchiesed communities. While anyone is free to use this app, please keep this in mind.
+        <UserSection>
+          <span>
+            As an app designed to help minoirty communities, we want the majority of our benefactors to be people in
+            disenfranchiesed communities. While anyone is free to use this app, please keep this in mind.
+          </span>
           <h3>Is your business minority owned? *</h3>
           <CheckboxContainer>
-            <input
-              type="checkbox"
+            <Checkbox
               checked={isMinorityOwned}
-              onChange={(e) => {
-                setIsMinorityOwned(e.target.checked);
+              onChange={() => {
+                setIsMinorityOwned(true);
               }}
             />
             <span>Yes, we are a minority owned business</span>
           </CheckboxContainer>
           <CheckboxContainer>
-            <input
-              type="checkbox"
+            <Checkbox
               checked={!isMinorityOwned}
-              onChange={(e) => {
-                setIsMinorityOwned(e.target.checked);
+              onChange={() => {
+                setIsMinorityOwned(false);
               }}
             />
             <span>No, we are not a minority owned business</span>
           </CheckboxContainer>
           <h3>What is the name of your business?</h3>
-          <input placeholder="Your answer here..." />
+          <TextInput placeholder="Your answer here..." />
           <h3>Tell us about what you do!</h3>
-          <input placeholder="Write your bio here..." />
+          <MultilineTextInput placeholder="Write your bio here..." />
           <h3>Any EGSs investors should be aware of?</h3>
-          <input placeholder="Separate by '#'. Ex: #Carbon Neutral #LBGTQ+ Friendly ..." />
+          <TextInput placeholder="Separate by '#'. Ex: #Carbon Neutral #LBGTQ+ Friendly ..." />
           <h3>What do you need the money for?</h3>
-          <input placeholder="Tell us your story..." />
-        </div>
+          <MultilineTextInput placeholder="Tell us your story..." />
+          <SubmitContainer>
+            <h2>That&#39;s It!</h2>
+            <UpdateInfo>
+              <span>Update Info</span> <FontAwesomeIcon icon={faCaretRight} size="lg" />
+            </UpdateInfo>
+          </SubmitContainer>
+        </UserSection>
       )}
 
       {isInvestor && (
-        <div>
+        <UserSection>
           <h3>How much are you willing to loan per client?</h3>
           <RangeWithTooltip
             step={100}
@@ -107,10 +123,16 @@ const Onboarding = () => {
             ]}
           />
           <h3>Tell us about why you&#39;re here!</h3>
-          <input placeholder="Write your bio here..." height={70} />
+          <MultilineTextInput placeholder="Write your bio here..." />
           <h3>Any EGSs that you&#39;d like to look out for?</h3>
-          <input placeholder="Separate by '#'. Ex: #Carbon Neutral #LBGTQ+ Friendly ..." />
-        </div>
+          <TextInput placeholder="Separate by '#'. Ex: #Carbon Neutral #LBGTQ+ Friendly ..." />
+          <SubmitContainer>
+            <h2>That&#39;s It!</h2>
+            <UpdateInfo>
+              <span>Update Info</span> <FontAwesomeIcon icon={faCaretRight} size="lg" />
+            </UpdateInfo>
+          </SubmitContainer>
+        </UserSection>
       )}
     </Wrapper>
   );
