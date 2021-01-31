@@ -52,7 +52,7 @@ export const Name = styled.h3<SelectedProps>`
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
-export const RecentMessage = styled.div<SelectedProps>`
+export const BusinessLocation = styled.div<SelectedProps>`
   width: 100%;
   font-size: 18px;
   white-space: nowrap;
