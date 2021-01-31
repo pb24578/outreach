@@ -1,6 +1,7 @@
 import { createAsyncSelectorResults } from 'async-selector-kit';
 import { API, graphqlOperation } from 'aws-amplify';
 import { Groups } from '../../shared/constants';
+import { IState } from '../../store';
 import { getUser, getGroups } from '../login';
 import { BusinessOwner, Investor } from './types';
 
@@ -75,6 +76,8 @@ const getInvestor = `
     }
   }
 `;
+
+export const getSelectedChatId = (state: IState) => state.dashboard.selectedChatId;
 
 export const [getUserData] = createAsyncSelectorResults(
   {

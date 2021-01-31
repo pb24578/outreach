@@ -1,45 +1,11 @@
-import { API, graphqlOperation } from 'aws-amplify';
-import { createAsyncSelectorResults } from 'async-selector-kit';
-import { ChatRoom } from './types';
+import { createSelector } from 'async-selector-kit';
+import { getSelectedChatId, getUserData } from '../dashboard';
 
-const getChatRoomQuery = `
-  query GetChatRoom($id: ID!) {
-    getChatRoom(id: $id) {
-      businessOwner {
-        id
-        firstName
-        lastName
-      }
-      investor {
-        id
-        firstName
-        lastName
-      }
-      messages {
-        items {
-          id
-          senderId
-          createdAt
-        }
-      }
-    }
+// eslint-disable-next-line max-len
+export const getChatRoom = createSelector([getSelectedChatId, getUserData], (selectedChatId, userData) => {
+  if (userData) {
+    const room = userData.chatRooms.items.find((chatRoom) => chatRoom.id === selectedChatId);
+    return room || null;
   }
-`;
-
-export const [getChatRoom] = createAsyncSelectorResults(
-  {
-    id: 'get-chat-room',
-    async: async () => {
-      const chatRoomId = 'fea5f5f4-32a7-4d7f-acb9-27e19b6a3935';
-      const chatRoom: any = await API.graphql(
-        graphqlOperation(getChatRoomQuery, {
-          id: chatRoomId,
-        }),
-      );
-      const chatRoomData: ChatRoom = chatRoom.data.getChatRoom;
-      return chatRoomData;
-    },
-    defaultValue: null,
-  },
-  [],
-);
+  return null;
+});
