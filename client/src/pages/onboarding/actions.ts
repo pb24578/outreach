@@ -32,6 +32,7 @@ const createBusinessOwnerMutation = `
             items {
               id
               senderId
+              content
             }
           }
         }
@@ -60,6 +61,7 @@ const createInvestorMutation = `
             items {
               id
               senderId
+              content
             }
           }
         }

@@ -38,6 +38,7 @@ type Loan @model {
  amountPaid: Float!
  lastPaidAt: AWSDate
  closedAt: AWSDate
+ approved: Boolean
  businessOwner: BusinessOwner! @connection(name: "BusinessOwnerLoans")
  investor: Investor! @connection(name: "InvestorLoans")
 }
@@ -45,5 +46,6 @@ type Loan @model {
 type Message @model {
  id: ID!
  senderId: ID!
+ content: String!
  chatRoom: ChatRoom! @connection(name: "ChatRoomMessages")
 }
