@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { getUserData } from './selectors';
+import { isBusinessOwner, isInvestor } from './types';
 
 import Header from '../../shared/containers/header/index';
 import Kanye from '../../assets/kanye.jpg';
@@ -33,21 +36,29 @@ const DUMMY_DATA: HeaderProps = {
   memberSince: 'April 2008',
 };
 
-const Dashboard = () => (
-  <div>
-    <Header
-      links={DUMMY_DATA.links}
-      photo={DUMMY_DATA.photo}
-      isProfile={false}
-      isInvestor={DUMMY_DATA.isInvestor}
-      isVerified={DUMMY_DATA.isVerified}
-      firstName={DUMMY_DATA.firstName}
-      lastName={DUMMY_DATA.lastName}
-      business={DUMMY_DATA.business}
-      memberSince={DUMMY_DATA.memberSince}
-    />
-    <Link to="/profile">To Profile</Link>
-  </div>
-);
+const Dashboard = () => {
+  const userData = useSelector(getUserData);
+  if (isBusinessOwner(userData)) {
+    console.log('this is a business owner', userData);
+  } else if (isInvestor(userData)) {
+    console.log('this is an investor', userData);
+  }
+  return (
+    <div>
+      <Header
+        links={DUMMY_DATA.links}
+        photo={DUMMY_DATA.photo}
+        isProfile={false}
+        isInvestor={DUMMY_DATA.isInvestor}
+        isVerified={DUMMY_DATA.isVerified}
+        firstName={DUMMY_DATA.firstName}
+        lastName={DUMMY_DATA.lastName}
+        business={DUMMY_DATA.business}
+        memberSince={DUMMY_DATA.memberSince}
+      />
+      <Link to="/profile">To Profile</Link>
+    </div>
+  );
+};
 
 export default Dashboard;

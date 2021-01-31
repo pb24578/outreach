@@ -1,5 +1,8 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ContactImage from '../../../assets/chat/contact.png';
+import { getSelectedChatId } from '../selectors';
+import { actions } from '../reducer';
 import {
   ArrowRight,
   BusinessLocation,
@@ -12,15 +15,28 @@ import {
 } from './styles';
 
 interface ContactProps {
-  selected: boolean;
+  id: string;
   name: string;
   location: string;
 }
 
+const { setSelectedChat } = actions;
+
 export const Contact = (props: ContactProps) => {
-  const { location, name, selected } = props;
+  const { id, location, name } = props;
+  const dispatch = useDispatch();
+  const selectedChatId = useSelector(getSelectedChatId);
+  const selected = id === selectedChatId;
+
+  /**
+   * Called whenever the contact has been selected.
+   */
+  const onSelectContact = () => {
+    dispatch(setSelectedChat(id));
+  };
+
   return (
-    <Container>
+    <Container onClick={onSelectContact}>
       <ContactContainer selected={selected}>
         <Profile>
           <ContactIcon src={ContactImage} />

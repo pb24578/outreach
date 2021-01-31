@@ -97,18 +97,19 @@ export const CheckboxContainer = styled(FlexRow)`
 `;
 
 export const UserSection = styled.div`
-  margin-top: 50px;
+  margin: 50px 0;
 `;
 
 export const SubmitContainer = styled(FlexCenter)`
   flex-direction: column;
+  margin-bottom: 50px;
 `;
 
 export const UpdateInfo = styled.button`
   width: 200px;
   padding: 5px;
   background-color: ${(props) => props.theme.colors.secondary};
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   border: none;
   font-size: 24px;
   cursor: pointer;
@@ -117,7 +118,16 @@ export const UpdateInfo = styled.button`
     margin-right: 10px;
   }
 
+  &:focus {
+    outline: none;
+  }
+
   &:hover {
     filter: saturate(1.5);
   }
+`;
+
+export const ErrorMessage = styled.div`
+  color: red;
+  margin-bottom: 10px;
 `;
