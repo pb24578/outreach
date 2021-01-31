@@ -7,6 +7,7 @@ interface SelectedProps {
 
 export const Container = styled(FlexRow)`
   margin: 8px 0px;
+  cursor: pointer;
   color: ${(props) => props.theme.colors.primary};
 `;
 
