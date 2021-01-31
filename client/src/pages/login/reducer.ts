@@ -29,6 +29,9 @@ const slice = createSlice({
         }
       }
     },
+    setGroups: (state, action: PayloadAction<string[]>) => {
+      state.groups = action.payload;
+    },
   },
 });
 

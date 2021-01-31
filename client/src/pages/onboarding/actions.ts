@@ -2,8 +2,11 @@
 /* eslint-disable no-console */
 import { API, graphqlOperation } from 'aws-amplify';
 import AWS from 'aws-sdk';
-import { CognitoUser } from '../login/types';
+import { createAsyncAction } from 'async-selector-kit';
+import { actions, CognitoUser } from '../login';
 import { Groups } from '../../shared/constants';
+
+const { setGroups } = actions;
 
 const createBusinessOwnerMutation = `
   mutation CreateBusinessOwner($input: CreateBusinessOwnerInput!) {
@@ -39,50 +42,58 @@ AWS.config.update({
 });
 const cognito = new AWS.CognitoIdentityServiceProvider();
 
-/**
- * Creates a BusinessOwner in the DynamoDB table
- */
-export const createBusinessOwner = async (businessOwnerInput: object, user: CognitoUser | undefined) => {
-  try {
-    const businessOwner: any = await API.graphql(
-      graphqlOperation(createBusinessOwnerMutation, {
-        input: { id: user?.username, ...businessOwnerInput },
-      }),
-    );
-    const businessOwnerData = businessOwner.data.createBusinessOwner;
-    if (user && user.pool && user.pool.userPoolId && user.username) {
-      const cognitoParams = {
-        UserPoolId: user.pool.userPoolId,
-        Username: user.username,
-        GroupName: Groups.BUSINESS_OWNER,
-      };
-      cognito.adminAddUserToGroup(cognitoParams, () => {});
+export const [createBusinessOwner] = createAsyncAction({
+  id: 'create-business-owner',
+  async: (store) => async (businessOwnerInput: object, user: CognitoUser | undefined) => {
+    try {
+      const businessOwner: any = await API.graphql(
+        graphqlOperation(createBusinessOwnerMutation, {
+          input: { id: user?.username, ...businessOwnerInput },
+        }),
+      );
+      const businessOwnerData = businessOwner.data.createBusinessOwner;
+      if (user && user.pool && user.pool.userPoolId && user.username) {
+        const cognitoParams = {
+          UserPoolId: user.pool.userPoolId,
+          Username: user.username,
+          GroupName: Groups.BUSINESS_OWNER,
+        };
+        cognito.adminAddUserToGroup(cognitoParams, (error) => {
+          if (!error) {
+            store.dispatch(setGroups([Groups.BUSINESS_OWNER]));
+          }
+        });
+      }
+    } catch (e) {
+      console.error('Error creating business owner: ', e);
     }
-  } catch (e) {
-    console.error('Error creating business owner: ', e);
-  }
-};
+  },
+});
 
-/**
- * Creates an Investor in the DynamoDB table
- */
-export const createInvestor = async (investorInput: object, user: CognitoUser | undefined) => {
-  try {
-    const investor: any = await API.graphql(
-      graphqlOperation(createInvestorMutation, {
-        input: { id: user?.username, ...investorInput },
-      }),
-    );
-    const investorData = investor.data.createInvestor;
-    if (user && user.pool && user.pool.userPoolId && user.username) {
-      const cognitoParams = {
-        UserPoolId: user.pool.userPoolId,
-        Username: user.username,
-        GroupName: Groups.INVESTOR,
-      };
-      cognito.adminAddUserToGroup(cognitoParams, () => {});
+export const [createInvestor] = createAsyncAction({
+  id: 'create-investor',
+  async: (store) => async (investorInput: object, user: CognitoUser | undefined) => {
+    try {
+      const investor: any = await API.graphql(
+        graphqlOperation(createInvestorMutation, {
+          input: { id: user?.username, ...investorInput },
+        }),
+      );
+      const investorData = investor.data.createInvestor;
+      if (user && user.pool && user.pool.userPoolId && user.username) {
+        const cognitoParams = {
+          UserPoolId: user.pool.userPoolId,
+          Username: user.username,
+          GroupName: Groups.INVESTOR,
+        };
+        cognito.adminAddUserToGroup(cognitoParams, (error) => {
+          if (!error) {
+            store.dispatch(setGroups([Groups.INVESTOR]));
+          }
+        });
+      }
+    } catch (e) {
+      console.error('Error creating investor: ', e);
     }
-  } catch (e) {
-    console.error('Error creating investor: ', e);
-  }
-};
+  },
+});
