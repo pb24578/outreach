@@ -122,7 +122,7 @@ const Header = ({
   return (
     <HeaderWrapper photo={photo}>
       <HeaderNav>{generateNavLinks(links)}</HeaderNav>
-      <HeaderContent>
+      <HeaderContent isProfile={isProfile}>
         {generateContent(headerType, photo, isVerified, firstName, lastName, business, memberSince)}
       </HeaderContent>
     </HeaderWrapper>

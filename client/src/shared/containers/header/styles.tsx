@@ -6,6 +6,10 @@ interface PhotoProps {
   photo: string;
 }
 
+interface ProfileProps {
+  isProfile: boolean;
+}
+
 export const HeaderWrapper = styled(FlexColumn)<PhotoProps>`
   width: 100%;
   height: 350px;
@@ -37,8 +41,8 @@ export const HeaderNav = styled.div`
   flex-basis: 10px;
   margin: 20px;
   & a {
-    padding-left: 10px;
-    padding-right: 10px;
+    font-size: 1.5em;
+    padding-right: 30px;
     color: ${(props) => props.theme.colors.teritary};
     & :visited {
       color: ${(props) => props.theme.colors.teritary};
@@ -49,8 +53,13 @@ export const HeaderNav = styled.div`
   }
 `;
 
-export const HeaderContent = styled(FlexRow)`
+export const HeaderContent = styled(FlexRow)<ProfileProps>`
   width: 95%;
+  ${(props) =>
+    !props.isProfile &&
+    `
+  align-items: center;
+  justify-content: center;`}
 `;
 
 // profile headers
@@ -87,7 +96,7 @@ export const DashboardVerifiedWrapper = styled(FlexRow)`
 `;
 
 export const DashboardContent = styled(FlexColumn)`
-  width: 100%;
+  width: fit-content;
   align-items: center;
   justify-content: center;
 `;

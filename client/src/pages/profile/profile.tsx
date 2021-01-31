@@ -5,7 +5,6 @@ import { onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { actions as loginActions, isInvestor } from '../login';
 
 import Header from '../../shared/containers/header/index';
-
 import Kanye from '../../assets/kanye.jpg';
 
 const { setUser } = loginActions;
