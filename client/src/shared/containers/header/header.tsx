@@ -68,7 +68,7 @@ const generateContent = (
   business: string,
   memberSince: string,
 ) => {
-  const image = <CircularImgBig photo={photo} />;
+  const image = photo && <CircularImgBig photo={photo} />;
   const title = (text: string) => <h1>{text}</h1>;
   const subtitle = (text: string) => <h2>{text}</h2>;
 

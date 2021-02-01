@@ -13,6 +13,8 @@ interface ChatParticipant {
   id: string;
   firstName: string;
   lastName: string;
+  location: string;
+  profilePicture: string;
 }
 
 interface Message {

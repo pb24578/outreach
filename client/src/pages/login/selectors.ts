@@ -21,11 +21,15 @@ export const getBusinessOwner = `
             id
             firstName
             lastName
+            location
+            profilePicture
           }
           investor {
             id
             firstName
             lastName
+            location
+            profilePicture
           }
           messages {
             items {
@@ -58,11 +62,15 @@ export const getInvestor = `
             id
             firstName
             lastName
+            location
+            profilePicture
           }
           businessOwner {
             id
             firstName
             lastName
+            location
+            profilePicture
           }
           messages {
             items {
