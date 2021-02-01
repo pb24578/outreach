@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import { FlexRow, FlexColumn, FlexCenter } from '../../styles/flex';
+import { FlexRow } from '../../styles/flex';
 
 export const VerifiedWrapper = styled(FlexRow)`
   flex-direction: row;
-  /* align-items: center; */
   justify-content: flex-start;
   width: auto;
   & span {

@@ -4,6 +4,10 @@ import { AmplifySignOut } from '@aws-amplify/ui-react';
 import { onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { actions as loginActions, loadUserData, CognitoUser } from '../login';
 
+import { LeftCol, RightCol, ProfileBody, MockGallery } from './styles';
+
+import InfoParagraph from '../../shared/containers/infoParagraph/index';
+
 import Header from '../../shared/containers/header/index';
 import Kanye from '../../assets/kanye.jpg';
 
@@ -25,6 +29,26 @@ interface HeaderProps {
   business: string;
   memberSince: string;
 }
+
+const content =
+  'We’re humans helping humans. During these trying times, minority business owners have found it hard to keep their businesses afloat. Since COVID began decimating the U.S in 2019, thousands of small businesses across the country have gone bankrupt.';
+
+const egsTags = [
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+];
 
 const DUMMY_DATA: HeaderProps = {
   links: [{ display: 'hello', href: '/' }],
@@ -52,7 +76,7 @@ const Profile = () => {
     <div>
       <Header
         links={DUMMY_DATA.links}
-        photo={DUMMY_DATA.photo}
+        photo="https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-9/141735394_280487163498802_1432936418341671874_o.jpg?_nc_cat=100&ccb=2&_nc_sid=09cbfe&_nc_ohc=4tndq88xgcsAX_sRg5u&_nc_ht=scontent-atl3-1.xx&oh=31ae573da285eab6328b86b68525109f&oe=603D76F5"
         isProfile
         isInvestor={DUMMY_DATA.isInvestor}
         isVerified={DUMMY_DATA.isVerified}
@@ -61,6 +85,17 @@ const Profile = () => {
         business={DUMMY_DATA.business}
         memberSince={DUMMY_DATA.memberSince}
       />
+      <ProfileBody>
+        <LeftCol>
+          <InfoParagraph titleText="EGSs" tags={egsTags} />
+          <InfoParagraph titleText="About Me" bodyText={content} />
+          <InfoParagraph titleText="Why We Need Help" bodyText={content} />
+        </LeftCol>
+        <RightCol>
+          {MockGallery()}
+          <InfoParagraph titleText="Find Us Online!" urls={DUMMY_DATA.links} />
+        </RightCol>
+      </ProfileBody>
       <AmplifySignOut />
     </div>
   );
