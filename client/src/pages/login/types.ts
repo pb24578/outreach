@@ -19,5 +19,5 @@ export interface CognitoUser extends CognitoUserInterface {
 export interface Login {
   authState: AuthState;
   user: CognitoUser | undefined;
-  groups: string[];
+  userLoaded: boolean;
 }

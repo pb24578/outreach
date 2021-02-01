@@ -1,14 +1,5 @@
-import { createSelector } from 'async-selector-kit';
-import { AuthState } from '@aws-amplify/ui-components';
 import { IState } from '../../store';
-import { Groups } from '../../shared/constants';
 
 export const getAuthState = (state: IState) => state.login.authState;
 export const getUser = (state: IState) => state.login.user;
-export const getGroups = (state: IState) => state.login.groups;
-
-export const isInvestor = createSelector(getGroups, (groups) => groups.includes(Groups.INVESTOR));
-export const shouldOnboarding = createSelector(
-  [getAuthState, getGroups],
-  (authState, groups) => authState === AuthState.SignedIn && groups.length === 0,
-);
+export const isUserLoaded = (state: IState) => state.login.userLoaded;

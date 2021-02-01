@@ -1,12 +1,11 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { AuthState } from '@aws-amplify/ui-components';
-import jwtDecode from 'jwt-decode';
 import { Login } from './types';
 
 export const initialState: Login = {
   authState: AuthState.SignIn,
   user: undefined,
-  groups: [],
+  userLoaded: false,
 };
 
 const slice = createSlice({
@@ -18,22 +17,13 @@ const slice = createSlice({
         // logging off the user
         state.authState = initialState.authState;
         state.user = initialState.user;
-        state.groups = initialState.groups;
         return;
       }
-      state.user = action.payload.user;
       state.authState = action.payload.authState;
-      if (state.user?.signInUserSession?.idToken.jwtToken) {
-        // decode and set the user's groups
-        type CognitoGroups = { ['cognito:groups']: string[] };
-        const decoded = jwtDecode<CognitoGroups>(state.user?.signInUserSession?.idToken.jwtToken);
-        if (decoded['cognito:groups']) {
-          state.groups = decoded['cognito:groups'];
-        }
-      }
+      state.user = action.payload.user;
     },
-    setGroups: (state, action: PayloadAction<string[]>) => {
-      state.groups = action.payload;
+    setUserLoaded: (state, action: PayloadAction<boolean>) => {
+      state.userLoaded = action.payload;
     },
   },
 });
