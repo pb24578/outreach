@@ -18,12 +18,13 @@ interface ContactProps {
   id: string;
   name: string;
   location: string;
+  photo?: string;
 }
 
 const { setSelectedChat } = actions;
 
 export const Contact = (props: ContactProps) => {
-  const { id, location, name } = props;
+  const { id, location, name, photo } = props;
   const dispatch = useDispatch();
   const selectedChatId = useSelector(getSelectedChatId);
   const selected = id === selectedChatId;
@@ -35,12 +36,12 @@ export const Contact = (props: ContactProps) => {
     dispatch(setSelectedChat(id));
   };
 
+  const contactIcon = photo ? <ContactIcon src={photo} /> : <ContactIcon src={ContactImage} />;
+
   return (
     <Container onClick={onSelectContact}>
       <ContactContainer selected={selected}>
-        <Profile>
-          <ContactIcon src={ContactImage} />
-        </Profile>
+        <Profile>{contactIcon}</Profile>
         <ChatContent>
           <Name selected={selected}>{name}</Name>
           <BusinessLocation selected={selected}>{location}</BusinessLocation>
