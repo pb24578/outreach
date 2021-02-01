@@ -12,21 +12,27 @@ const { addChatRoom } = loginActions;
 const createChatRoomMutation = `
   mutation CreateChatRoom($input: CreateChatRoomInput!) {
     createChatRoom(input: $input) {
+      id
       businessOwner {
         id
         firstName
         lastName
+        location
+        profilePicture
+        certificate
       }
       investor {
         id
         firstName
         lastName
+        location
+        profilePicture
       }
       messages {
         items {
           id
           senderId
-          createdAt
+          content
         }
       }
     }
