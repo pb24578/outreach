@@ -51,7 +51,7 @@ const Profile = () => {
     <div>
       <Header
         links={DUMMY_DATA.links}
-        photo={DUMMY_DATA.photo}
+        photo="https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-9/141735394_280487163498802_1432936418341671874_o.jpg?_nc_cat=100&ccb=2&_nc_sid=09cbfe&_nc_ohc=4tndq88xgcsAX_sRg5u&_nc_ht=scontent-atl3-1.xx&oh=31ae573da285eab6328b86b68525109f&oe=603D76F5"
         isProfile
         isInvestor={DUMMY_DATA.isInvestor}
         isVerified={DUMMY_DATA.isVerified}
