@@ -1,11 +1,13 @@
 /* eslint-disable no-console */
 import { API, graphqlOperation } from 'aws-amplify';
 import { createAsyncAction } from 'async-selector-kit';
-import { getUser } from '../../../pages/login';
+import { actions as loginActions, getUser, getUserData, isInvestor } from '../../../pages/login';
+import { ChatRoom } from './types';
 import { getChatRoom } from './selectors';
 import { actions } from './reducer';
 
 const { addMessage } = actions;
+const { addChatRoom } = loginActions;
 
 const createChatRoomMutation = `
   mutation CreateChatRoom($input: CreateChatRoomInput!) {
@@ -52,6 +54,29 @@ const createMessageMutation = `
     }
   }
 `;
+
+export const [createChatRoom] = createAsyncAction(
+  {
+    id: 'create-chat-room',
+    async: (store, status, user, userData) => async (otherUserId: string) => {
+      if (!user) return;
+      try {
+        const chatRoomInvestorId = isInvestor(userData) ? user.username : otherUserId;
+        const chatRoomBusinessOwnerId = isInvestor(userData) ? otherUserId : user.username;
+        const createChatRoom: any = await API.graphql(
+          graphqlOperation(createChatRoomMutation, {
+            input: { chatRoomBusinessOwnerId, chatRoomInvestorId },
+          }),
+        );
+        const chatRoom: ChatRoom = createChatRoom.data.createChatRoom;
+        store.dispatch(addChatRoom(chatRoom));
+      } catch (e) {
+        console.error('Could not create the chat room": ', e);
+      }
+    },
+  },
+  [getUser, getUserData],
+);
 
 export const [createMessage] = createAsyncAction(
   {

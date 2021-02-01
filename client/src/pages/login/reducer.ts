@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { AuthState } from '@aws-amplify/ui-components';
 import { BusinessOwner, Investor, Login, SetUserPayload } from './types';
+import { ChatRoom } from '../../shared/containers/chat';
 
 export const initialState: Login = {
   authState: AuthState.SignIn,
@@ -13,6 +14,9 @@ const slice = createSlice({
   name: 'login',
   initialState,
   reducers: {
+    addChatRoom: (state, action: PayloadAction<ChatRoom>) => {
+      state.userData?.chatRooms.items.push(action.payload);
+    },
     setUser: (state, action: PayloadAction<SetUserPayload>) => {
       state.userLoaded = true;
       if (!action.payload.user) {
