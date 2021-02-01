@@ -3,6 +3,8 @@ Project for Citi Technology Hackathon from Jan 29 - Feb 1, 2021. Created by Andr
 
 The project uses Typescript, React, and Redux in the front-end. The project uses AWS Amplify with Cognito, DyanmoDB, and GraphQL in the back-end.
 
+Read the CitiHackScript.txt to see the presentation for the project.
+
 ### aws-exports.js
 You need to add an aws-exports.js file in client/src and server/src because this project uses AWS amplify.
 
