@@ -69,7 +69,7 @@ export const CircularImgBig = styled.div<PhotoProps>`
   min-height: 200px;
   background: url(${(props) => props.photo});
   background-position: center;
-  background-size: 200px;
+  background-size: cover;
 `;
 
 export const ProfileContent = styled(FlexRow)`
