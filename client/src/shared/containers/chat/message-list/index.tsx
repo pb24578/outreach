@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getUser } from '../../login';
+import { getUser } from '../../../../pages/login';
 import { Message } from '../message';
 import { Container } from './styles';
 import { getChatRoom } from '../selectors';

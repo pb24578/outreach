@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FlexColumn, FlexRow } from '../../shared/styles';
+import { FlexColumn, FlexRow } from '../../styles';
 
 export const Container = styled(FlexRow)`
   height: 97.5vh;

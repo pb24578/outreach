@@ -1,6 +1,6 @@
 import { API, graphqlOperation } from 'aws-amplify';
 import { createAsyncAction } from 'async-selector-kit';
-import { actions } from '../login';
+import { actions } from '../../../pages/login';
 
 const createChatRoomMutation = `
   mutation CreateChatRoom($input: CreateChatRoomInput!) {
@@ -47,4 +47,3 @@ const createMessageMutation = `
     }
   }
 `;
-

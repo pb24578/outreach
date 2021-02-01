@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ContactImage from '../../../assets/chat/contact.png';
+import ContactImage from '../../../../assets/chat/contact.png';
 import { getSelectedChatId } from '../selectors';
 import { actions } from '../reducer';
 import {

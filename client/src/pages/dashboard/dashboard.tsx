@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import { getUserData } from '../login';
 import { isBusinessOwner, isInvestor } from './types';
 
-import Header from '../../shared/containers/header/index';
+import Header from '../../shared/containers/header';
+import Chat from '../../shared/containers/chat';
 import Kanye from '../../assets/kanye.jpg';
 
 type LinkObj = {
@@ -55,6 +56,7 @@ const Dashboard = () => {
         memberSince={DUMMY_DATA.memberSince}
       />
       <Link to="/profile">To Profile</Link>
+      <Chat />
     </div>
   );
 };

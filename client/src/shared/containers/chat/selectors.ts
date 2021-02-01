@@ -1,6 +1,6 @@
 import { createSelector } from 'async-selector-kit';
-import { IState } from '../../store';
-import { getUserData } from '../login';
+import { IState } from '../../../store';
+import { getUserData } from '../../../pages/login';
 
 export const getSelectedChatId = (state: IState) => state.chat.selectedChatId;
 

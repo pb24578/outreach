@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getUser, getUserData } from '../../login';
+import { getUser, getUserData } from '../../../../pages/login';
 import { Contact } from '../contact';
 import { Container } from './styles';
 

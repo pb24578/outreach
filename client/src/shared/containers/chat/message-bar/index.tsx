@@ -1,6 +1,6 @@
 import React from 'react';
-import SendImage from '../../../assets/chat/send.svg';
-import { FlexFive } from '../../../shared/styles';
+import SendImage from '../../../../assets/chat/send.svg';
+import { FlexFive } from '../../../../shared/styles';
 import { Container, MessageInput, SendIcon } from './styles';
 
 export const MessageBar = () => {
