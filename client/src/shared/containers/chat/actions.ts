@@ -1,6 +1,8 @@
+/* eslint-disable no-console */
 import { API, graphqlOperation } from 'aws-amplify';
 import { createAsyncAction } from 'async-selector-kit';
-import { actions } from '../../../pages/login';
+import { getUser } from '../../../pages/login';
+import { getChatRoom } from './selectors';
 
 const createChatRoomMutation = `
   mutation CreateChatRoom($input: CreateChatRoomInput!) {
@@ -47,3 +49,22 @@ const createMessageMutation = `
     }
   }
 `;
+
+export const [createMessage] = createAsyncAction(
+  {
+    id: 'create-message',
+    async: (store, status, user, chatRoom) => async (content: string) => {
+      if (!user || !chatRoom) return;
+      try {
+        await API.graphql(
+          graphqlOperation(createMessageMutation, {
+            input: { senderId: user.username, content, messageChatRoomId: chatRoom.id },
+          }),
+        );
+      } catch (e) {
+        console.error('Could not send the chat message": ', e);
+      }
+    },
+  },
+  [getUser, getChatRoom],
+);

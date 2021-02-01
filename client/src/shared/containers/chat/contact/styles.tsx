@@ -36,8 +36,9 @@ export const Profile = styled(FlexCenter)`
 `;
 
 export const ContactIcon = styled.img`
-  width: 40%;
-  height: 57%;
+  width: 85%;
+  height: 85%;
+  border-radius: 50%;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `;
 
