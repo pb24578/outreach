@@ -1,5 +1,6 @@
 export interface Chat {
   selectedChatId: string;
+  recentMessages: Message[];
 }
 
 export interface ChatRoom {
@@ -17,7 +18,7 @@ interface ChatParticipant {
   profilePicture: string | null;
 }
 
-interface Message {
+export interface Message {
   senderId: string;
   content: string;
 }
