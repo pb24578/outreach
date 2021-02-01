@@ -1,4 +1,5 @@
 import React from 'react';
+import { faMapMarkerAlt, faCalendarAlt, faHandsHelping, faMoneyCheckAlt } from '@fortawesome/free-solid-svg-icons';
 import SummaryList from './summaryList';
 
 interface Props {
@@ -19,19 +20,19 @@ const KPIList = ({ isInvestor, location, memberSince, partnerships, earnings }: 
   ];
   const kpis = [
     {
-      icon: iconList[0],
+      icon: faMapMarkerAlt,
       info: infoList[0],
     },
     {
-      icon: iconList[1],
+      icon: faCalendarAlt,
       info: infoList[1],
     },
     {
-      icon: iconList[2],
+      icon: faHandsHelping,
       info: infoList[2],
     },
     {
-      icon: iconList[3],
+      icon: faMoneyCheckAlt,
       info: infoList[3],
     },
   ];
