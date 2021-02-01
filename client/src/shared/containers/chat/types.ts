@@ -14,7 +14,7 @@ interface ChatParticipant {
   firstName: string;
   lastName: string;
   location: string;
-  profilePicture: string;
+  profilePicture: string | null;
 }
 
 interface Message {
