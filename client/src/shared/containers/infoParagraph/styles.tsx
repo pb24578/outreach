@@ -6,4 +6,13 @@ export const Wrapper = styled.div`
   & h3 {
     color: ${(props) => props.theme.colors.secondary};
   }
+  & a {
+    color: ${(props) => props.theme.colors.teritary};
+    & :visited {
+      color: ${(props) => props.theme.colors.teritary};
+    }
+    & :active {
+      color: ${(props) => props.theme.colors.teritary};
+    }
+  }
 `;

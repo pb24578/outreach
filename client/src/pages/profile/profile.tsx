@@ -88,9 +88,10 @@ const Profile = () => {
         <LeftCol>
           <InfoParagraph titleText="EGSs" tags={egsTags} />
           <InfoParagraph titleText="About Me" bodyText={content} />
+          <InfoParagraph titleText="Why We Need Help" bodyText={content} />
         </LeftCol>
         <RightCol>
-          <InfoParagraph titleText="Why We Need Help" bodyText={content} />
+          <InfoParagraph titleText="Find Us Online!" urls={DUMMY_DATA.links} />
         </RightCol>
       </ProfileBody>
       <AmplifySignOut />
