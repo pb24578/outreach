@@ -4,7 +4,7 @@ import { AmplifySignOut } from '@aws-amplify/ui-react';
 import { onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { actions as loginActions, isInvestor } from '../login';
 
-import { LeftCol, RightCol, ProfileBody } from './styles';
+import { LeftCol, RightCol, ProfileBody, MockGallery } from './styles';
 
 import InfoParagraph from '../../shared/containers/infoParagraph/index';
 
@@ -91,6 +91,7 @@ const Profile = () => {
           <InfoParagraph titleText="Why We Need Help" bodyText={content} />
         </LeftCol>
         <RightCol>
+          {MockGallery()}
           <InfoParagraph titleText="Find Us Online!" urls={DUMMY_DATA.links} />
         </RightCol>
       </ProfileBody>
