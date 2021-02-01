@@ -1,9 +1,10 @@
 import React from 'react';
+import { Icon } from '@fortawesome/fontawesome-svg-core';
 import Summary from './summary';
 import { SummaryListWrapper } from './styles';
 
 type KPI = {
-  icon: string;
+  icon: any;
   info: string;
 };
 

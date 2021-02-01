@@ -17,6 +17,7 @@ import {
 import { LeftCol, RightCol, ProfileBody, MockGallery } from './styles';
 
 import InfoParagraph from '../../shared/containers/infoParagraph/index';
+import KPIList from '../../shared/containers/summary/kpiList';
 
 import Header from '../../shared/containers/header/index';
 import Kanye from '../../assets/kanye.jpg';
@@ -100,6 +101,13 @@ const Profile = () => {
       />
       <ProfileBody>
         <LeftCol>
+          <KPIList
+            isInvestor={isInvestor(userData)}
+            location="Austin, TX"
+            memberSince={DUMMY_DATA.memberSince}
+            partnerships={5}
+            earnings={2000}
+          />
           <InfoParagraph titleText="EGSs" tags={userData.tags} />
           <InfoParagraph titleText="About Me" bodyText={userData.bio} />
           {isBusinessOwner(userData) && <InfoParagraph titleText="Why We Need Help" bodyText={userData.storyBio} />}

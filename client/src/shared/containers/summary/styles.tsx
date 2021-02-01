@@ -4,10 +4,17 @@ import { FlexRow, FlexColumn } from '../../styles/flex';
 export const KPIWrapper = styled(FlexRow)`
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
   width: auto;
-  & span {
-    padding-left: 10px;
+  & h3 {
+    padding-left: 30px;
+    line-height: 0;
   }
+`;
+
+export const IconContainer = styled.div`
+  width: 10px;
+  height: auto;
 `;
 
 export const SummaryListWrapper = styled(FlexColumn)`

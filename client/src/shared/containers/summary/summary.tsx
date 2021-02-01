@@ -1,19 +1,21 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { Icon, IconProp } from '@fortawesome/fontawesome-svg-core';
 import { VerifiedWrapper } from '../verifiedText/styles';
-import { KPIWrapper } from './styles';
+import { KPIWrapper, IconContainer } from './styles';
 
 interface KPIProps {
-  icon: string;
+  icon: any;
   text: string;
 }
 
 const Summary = ({ icon, text }: KPIProps) => (
-  <VerifiedWrapper>
-    <FontAwesomeIcon icon={icon as IconProp} />
-    <span>{text}</span>
-  </VerifiedWrapper>
+  <KPIWrapper>
+    <IconContainer>
+      <FontAwesomeIcon icon={icon} color="#EDF060" />
+    </IconContainer>
+    <h3>{text}</h3>
+  </KPIWrapper>
 );
 
 export default Summary;
