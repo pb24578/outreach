@@ -14,7 +14,7 @@ export const HeaderWrapper = styled(FlexColumn)<PhotoProps>`
   height: 350px;
   align-items: center;
   justify-content: flex-start;
-  background: linear-gradient(0deg, rgba(7, 16, 19, 0.74), rgba(7, 16, 19, 0.74)), url(${(props) => props.photo});
+  background: linear-gradient(180deg, rgba(7, 16, 19, 0.5) 0%, rgba(7, 16, 19, 1) 95%), url(${(props) => props.photo});
   background-position: center;
   background-size: cover;
   margin: 0;
