@@ -1,7 +1,7 @@
 # Outreach
-Project for Citi Technology Hackathon from Jan 29 - Feb 1, 2021
+Project for Citi Technology Hackathon from Jan 29 - Feb 1, 2021. Created by Andrew Le, Fronrich Puno, Pravat Bhusal
 
-Created by Andrew Le, Fronrich Puno, Pravat Bhusal
+The project uses Typescript, React, and Redux in the front-end. The project uses AWS Amplify with Cognito, DyanmoDB, and GraphQL in the back-end.
 
 ### aws-exports.js
 You need to add an aws-exports.js file in client/src and server/src because this project uses AWS amplify.
