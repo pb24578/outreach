@@ -27,6 +27,9 @@ const slice = createSlice({
       state.user = action.payload.user;
       state.userData = action.payload.userData;
     },
+    setUserData: (state, action: PayloadAction<Investor | BusinessOwner>) => {
+      state.userData = action.payload;
+    },
   },
 });
 
