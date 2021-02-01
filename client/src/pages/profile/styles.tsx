@@ -19,8 +19,8 @@ export const RightCol = styled(ProfileCol)`
 `;
 
 export const ProfileBody = styled(FlexRow)`
+  padding-top: 40px;
   justify-content: space-evenly;
-  padding: 40px;
   width: 100%;
 `;
 
