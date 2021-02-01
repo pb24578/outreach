@@ -34,8 +34,9 @@ const Onboarding = () => {
   const [isBusinessOwner, setIsBusinessOwner] = useState(false);
   const [isInvestor, setIsInvestor] = useState(false);
   const [isMinorityOwned, setIsMinorityOwned] = useState(false);
-  const [fullName, setFullName] = useState({ firstName: '', lastName: '' });
+  const [profileInfo, setProfileInfo] = useState({ firstName: '', lastName: '', profilePicture: '' });
   const [newBusinessOwner, setNewBusinessOwner] = useState({
+    certificate: '',
     businessName: '',
     location: '',
     bio: '',
@@ -58,8 +59,8 @@ const Onboarding = () => {
 
   const validateThenSubmitBusinessOwner = () => {
     const newErrorMessages = {
-      firstName: fullName.firstName.length > 0 ? null : validationErrors.firstName,
-      lastName: fullName.lastName.length > 0 ? null : validationErrors.lastName,
+      firstName: profileInfo.firstName.length > 0 ? null : validationErrors.firstName,
+      lastName: profileInfo.lastName.length > 0 ? null : validationErrors.lastName,
       businessName: newBusinessOwner.businessName.length > 0 ? null : validationErrors.businessName,
       location: newBusinessOwner.location.length > 0 ? null : validationErrors.location,
       tags: !newBusinessOwner.tags.length || newBusinessOwner.tags.includes('#') ? null : validationErrors.tags,
@@ -71,7 +72,7 @@ const Onboarding = () => {
       splitTags = splitTags.filter((tag) => tag.length > 0).map((tag) => tag.replace(/ /g, ''));
       const businessOwnerInput = {
         ...newBusinessOwner,
-        ...fullName,
+        ...profileInfo,
         minorityOwned: isMinorityOwned,
         tags: splitTags,
       };
@@ -81,8 +82,8 @@ const Onboarding = () => {
 
   const validateThenSubmitInvestor = () => {
     const newErrorMessages = {
-      firstName: fullName.firstName.length > 0 ? null : validationErrors.firstName,
-      lastName: fullName.lastName.length > 0 ? null : validationErrors.lastName,
+      firstName: profileInfo.firstName.length > 0 ? null : validationErrors.firstName,
+      lastName: profileInfo.lastName.length > 0 ? null : validationErrors.lastName,
       location: newInvestor.location.length > 0 ? null : validationErrors.location,
       tags: !newInvestor.tags.length || newInvestor.tags.includes('#') ? null : validationErrors.tags,
     };
@@ -93,7 +94,7 @@ const Onboarding = () => {
       splitTags = splitTags.filter((tag) => tag.length > 0).map((tag) => tag.replace(/ /g, ''));
       const investorInput = {
         ...newInvestor,
-        ...fullName,
+        ...profileInfo,
         tags: splitTags,
       };
       createInvestor(investorInput, user);
@@ -107,8 +108,16 @@ const Onboarding = () => {
         <h2>Tell Us a Bit About Yourself...</h2>
       </Title>
       <h3>What&#39;s your name?</h3>
-      <TextInput placeholder="First Name" onBlur={(e) => setFullName({ ...fullName, firstName: e.target.value })} />
-      <TextInput placeholder="Last Name" onBlur={(e) => setFullName({ ...fullName, lastName: e.target.value })} />
+      <TextInput
+        placeholder="First Name"
+        onBlur={(e) => setProfileInfo({ ...profileInfo, firstName: e.target.value })}
+      />
+      <TextInput placeholder="Last Name" onBlur={(e) => setProfileInfo({ ...profileInfo, lastName: e.target.value })} />
+      <h3>Profile Picture (upload an image URL)</h3>
+      <TextInput
+        placeholder="Provide an image URL..."
+        onBlur={(e) => setProfileInfo({ ...profileInfo, profilePicture: e.target.value })}
+      />
       <h3>Who are you?</h3>
       <CheckboxContainer>
         <Checkbox
@@ -158,6 +167,15 @@ const Onboarding = () => {
             />
             <span>No, we are not a minority owned business</span>
           </CheckboxContainer>
+          {isMinorityOwned && (
+            <div>
+              <h3>Provide a link for your certificate:</h3>
+              <TextInput
+                placeholder="Provide your certificate link..."
+                onBlur={(e) => setNewBusinessOwner({ ...newBusinessOwner, certificate: e.target.value })}
+              />
+            </div>
+          )}
           <h3>What is the name of your business?</h3>
           <TextInput
             placeholder="Your answer here..."

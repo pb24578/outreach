@@ -9,15 +9,9 @@ import awsconfig from './aws-exports';
 
 // Pages
 import Landing from './pages/landing';
-import Login, {
-  actions as loginActions,
-  getAuthState,
-  getGroups,
-  getUserCredentials,
-  shouldOnboarding,
-} from './pages/login';
+import Login, { getAuthState, setUserState, isUserLoaded } from './pages/login';
 import Onboarding from './pages/onboarding';
-import Dashboard from './pages/dashboard';
+import Dashboard, { getUserData } from './pages/dashboard';
 import Profile from './pages/profile';
 import Chat from './pages/chat';
 
@@ -25,42 +19,26 @@ import Chat from './pages/chat';
 import './shared/styles/global.css';
 import Theme from './shared/styles/theme';
 
-const { setUser } = loginActions;
-
 Amplify.configure(awsconfig);
 
 const App = () => {
-  const dispatch = useDispatch();
-  const [userLoading, setUserLoading] = useState(true);
+  const userLoaded = useSelector(isUserLoaded);
   const authState = useSelector(getAuthState);
-  const mustOnboarding = useSelector(shouldOnboarding);
+  const userData = useSelector(getUserData);
+  const userDataLoaded = userData === undefined || userData;
+
   const isSignedIn = authState === AuthState.SignedIn;
   const redirectLanding = !isSignedIn;
-  const redirectOnboarding = isSignedIn && mustOnboarding;
-  const redirectDashboard = isSignedIn && !mustOnboarding;
-
-  // for debugging - find out how to retain group after refreshing, after onboarding
-  const group = useSelector(getGroups);
-  console.log(group);
-
-  /**
-   * Loads the user and updates the state if the user is signed-in.
-   */
-  const setSignedInState = async () => {
-    const user = await getUserCredentials();
-    if (user) {
-      dispatch(setUser({ authState: AuthState.SignedIn, user }));
-    }
-    setUserLoading(false);
-  };
+  const redirectOnboarding = isSignedIn && userData === undefined;
+  const redirectDashboard = isSignedIn && userData;
 
   useEffect(() => {
     if (!isSignedIn) {
-      setSignedInState();
+      setUserState();
     }
   }, [authState]);
 
-  if (userLoading) {
+  if (!userLoaded || !userDataLoaded) {
     return <div />;
   }
 

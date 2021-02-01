@@ -38,10 +38,8 @@ const DUMMY_DATA: HeaderProps = {
 
 const Dashboard = () => {
   const userData = useSelector(getUserData);
-  if (isBusinessOwner(userData)) {
-    console.log('this is a business owner', userData);
-  } else if (isInvestor(userData)) {
-    console.log('this is an investor', userData);
+  if (!userData) {
+    return <div />;
   }
   return (
     <div>

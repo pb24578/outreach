@@ -4,9 +4,11 @@ export interface BusinessOwner {
   id: string;
   firstName: string;
   lastName: string;
+  profilePicture: string;
   businessName: string;
   location: string;
   minorityOwned: boolean;
+  certificate: string;
   bio: string;
   storyBio: string;
   tags: string[];
@@ -17,6 +19,7 @@ export interface Investor {
   id: string;
   firstName: string;
   lastName: string;
+  profilePicture: string;
   location: string;
   minMaxLoan: number[];
   bio: string;

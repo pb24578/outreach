@@ -1,7 +1,6 @@
 import { createAsyncSelectorResults } from 'async-selector-kit';
 import { API, graphqlOperation } from 'aws-amplify';
-import { Groups } from '../../shared/constants';
-import { getUser, getGroups } from '../login';
+import { getUser } from '../login';
 import { BusinessOwner, Investor } from './types';
 
 const getBusinessOwner = `
@@ -11,7 +10,9 @@ const getBusinessOwner = `
       firstName
       lastName
       businessName
+      profilePicture
       minorityOwned
+      certificate
       location
       bio
       storyBio
@@ -48,6 +49,7 @@ const getInvestor = `
       id
       firstName
       lastName
+      profilePicture
       location
       minMaxLoan
       bio
@@ -80,29 +82,30 @@ const getInvestor = `
 
 export const [getUserData] = createAsyncSelectorResults(
   {
-    id: 'get-group',
-    async: async (user, groups) => {
-      if (groups.includes(Groups.INVESTOR)) {
-        const investor: any = await API.graphql(
-          graphqlOperation(getInvestor, {
-            id: user?.username,
-          }),
-        );
-        const investorData: Investor = investor.data.getInvestor;
+    id: 'get-user-data',
+    async: async (user) => {
+      const investorPromise = API.graphql(
+        graphqlOperation(getInvestor, {
+          id: user?.username,
+        }),
+      ) as Promise<any>;
+      const businessOwnerPromise = API.graphql(
+        graphqlOperation(getBusinessOwner, {
+          id: user?.username,
+        }),
+      ) as Promise<any>;
+      const [investor, businessOwner] = await Promise.all([investorPromise, businessOwnerPromise]);
+      const investorData: Investor = investor.data.getInvestor;
+      const businessOwnerData: BusinessOwner = businessOwner.data.getBusinessOwner;
+      if (investorData) {
         return investorData;
       }
-      if (groups.includes(Groups.BUSINESS_OWNER)) {
-        const businessOwner: any = await API.graphql(
-          graphqlOperation(getBusinessOwner, {
-            id: user?.username,
-          }),
-        );
-        const businessOwnerData: BusinessOwner = businessOwner.data.getBusinessOwner;
+      if (businessOwnerData) {
         return businessOwnerData;
       }
-      return null;
+      return undefined;
     },
     defaultValue: null,
   },
-  [getUser, getGroups],
+  [getUser],
 );
