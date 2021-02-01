@@ -1,6 +1,7 @@
 import React from 'react';
 import SendImage from '../../../../assets/chat/send.svg';
 import { FlexFive } from '../../../../shared/styles';
+import { createMessage } from '../actions';
 import { Container, MessageInput, SendIcon } from './styles';
 
 export const MessageBar = () => {
@@ -8,6 +9,7 @@ export const MessageBar = () => {
 
   const onSend = () => {
     if (!message) return;
+    createMessage(message);
     setMessage('');
   };
 

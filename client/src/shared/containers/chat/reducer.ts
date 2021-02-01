@@ -1,8 +1,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Chat } from './types';
+import { Chat, Message } from './types';
 
 export const initialState: Chat = {
   selectedChatId: '',
+  recentMessages: [],
 };
 
 const slice = createSlice({
@@ -11,6 +12,9 @@ const slice = createSlice({
   reducers: {
     setSelectedChat: (state, action: PayloadAction<string>) => {
       state.selectedChatId = action.payload;
+    },
+    addMessage: (state, action: PayloadAction<Message>) => {
+      state.recentMessages.push(action.payload);
     },
   },
 });
