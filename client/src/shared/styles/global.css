@@ -51,8 +51,3 @@ div {
 ::-webkit-scrollbar-thumb {
   background: #edf060;
 }
-
-/* Handle on hover
-::-webkit-scrollbar-thumb:hover {
-  background: #b30000;
-} */
