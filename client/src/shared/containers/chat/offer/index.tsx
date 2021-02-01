@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlexTen } from '../../../shared/styles';
+import { FlexTen } from '../../../../shared/styles';
 import { AcceptButton, ButtonContainer, Container, DenyButton, LetterContainer } from './styles';
 
 interface OfferProps {

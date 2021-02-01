@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FlexCenter, FlexRow } from '../../../shared/styles';
+import { FlexCenter, FlexRow } from '../../../styles';
 
 interface MessagerProps {
   messager: boolean;

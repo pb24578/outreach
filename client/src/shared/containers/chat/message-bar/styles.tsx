@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FlexRow } from '../../../shared/styles';
+import { FlexRow } from '../../../../shared/styles';
 
 export const Container = styled(FlexRow)`
   align-items: center;

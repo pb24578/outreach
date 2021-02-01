@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FlexCenter, FlexColumn, FlexRow } from '../../../shared/styles';
+import { FlexCenter, FlexColumn, FlexRow } from '../../../../shared/styles';
 
 interface SelectedProps {
   selected: boolean;

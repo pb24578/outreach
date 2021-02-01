@@ -13,7 +13,6 @@ import Login, { getAuthState, getUserData, setUserState, isUserLoaded } from './
 import Onboarding from './pages/onboarding';
 import Dashboard from './pages/dashboard';
 import Profile from './pages/profile';
-import Chat from './pages/chat';
 
 // Styles
 import './shared/styles/global.css';
@@ -93,9 +92,6 @@ const App = () => {
           </Route>
           <Route exact path="/profile">
             {redirectNoSession() || <Profile />}
-          </Route>
-          <Route exact path="/chat">
-            {redirectNoSession() || <Chat />}
           </Route>
         </Switch>
       </Theme>

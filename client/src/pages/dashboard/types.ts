@@ -1,4 +1,4 @@
-import { ChatRoom } from '../chat';
+import { ChatRoom } from '../../shared/containers/chat';
 
 export interface BusinessOwner {
   id: string;
