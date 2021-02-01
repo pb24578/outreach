@@ -11,8 +11,8 @@ interface Props {
   kpis: KPI[];
 }
 
-const generateKPIs = (kpis: KPI[]) => {};
+// const generateKPIs = (kpis: KPI[]) => {};
 
-const SummaryList = ({ kpis }: Props) => <SummaryListWrapper>{generateKPIs(kpis)}</SummaryListWrapper>;
+// // const SummaryList = ({ kpis }: Props) => <SummaryListWrapper>{generateKPIs(kpis)}</SummaryListWrapper>;
 
-export default SummaryList;
+// export default SummaryList;
