@@ -4,6 +4,10 @@ import { AmplifySignOut } from '@aws-amplify/ui-react';
 import { onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { actions as loginActions, isInvestor } from '../login';
 
+import { LeftCol, RightCol, ProfileBody } from './styles';
+
+import InfoParagraph from '../../shared/containers/infoParagraph/index';
+
 import Header from '../../shared/containers/header/index';
 import Kanye from '../../assets/kanye.jpg';
 
@@ -25,6 +29,26 @@ interface HeaderProps {
   business: string;
   memberSince: string;
 }
+
+const content =
+  'We’re humans helping humans. During these trying times, minority business owners have found it hard to keep their businesses afloat. Since COVID began decimating the U.S in 2019, thousands of small businesses across the country have gone bankrupt.';
+
+const egsTags = [
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+  'hello',
+];
 
 const DUMMY_DATA: HeaderProps = {
   links: [{ display: 'hello', href: '/' }],
@@ -60,6 +84,15 @@ const Profile = () => {
         business={DUMMY_DATA.business}
         memberSince={DUMMY_DATA.memberSince}
       />
+      <ProfileBody>
+        <LeftCol>
+          <InfoParagraph titleText="EGSs" tags={egsTags} />
+          <InfoParagraph titleText="About Me" bodyText={content} />
+        </LeftCol>
+        <RightCol>
+          <InfoParagraph titleText="Why We Need Help" bodyText={content} />
+        </RightCol>
+      </ProfileBody>
       <AmplifySignOut />
     </div>
   );
