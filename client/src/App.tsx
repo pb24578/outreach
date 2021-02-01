@@ -9,9 +9,9 @@ import awsconfig from './aws-exports';
 
 // Pages
 import Landing from './pages/landing';
-import Login, { getAuthState, setUserState, isUserLoaded } from './pages/login';
+import Login, { getAuthState, getUserData, setUserState, isUserLoaded } from './pages/login';
 import Onboarding from './pages/onboarding';
-import Dashboard, { getUserData } from './pages/dashboard';
+import Dashboard from './pages/dashboard';
 import Profile from './pages/profile';
 import Chat from './pages/chat';
 
@@ -25,11 +25,10 @@ const App = () => {
   const userLoaded = useSelector(isUserLoaded);
   const authState = useSelector(getAuthState);
   const userData = useSelector(getUserData);
-  const userDataLoaded = userData === undefined || userData;
 
   const isSignedIn = authState === AuthState.SignedIn;
   const redirectLanding = !isSignedIn;
-  const redirectOnboarding = isSignedIn && userData === undefined;
+  const redirectOnboarding = isSignedIn && !userData;
   const redirectDashboard = isSignedIn && userData;
 
   useEffect(() => {
@@ -38,7 +37,7 @@ const App = () => {
     }
   }, [authState]);
 
-  if (!userLoaded || !userDataLoaded) {
+  if (!userLoaded) {
     return <div />;
   }
 

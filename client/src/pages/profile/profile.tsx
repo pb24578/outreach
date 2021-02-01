@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { AmplifySignOut } from '@aws-amplify/ui-react';
 import { onAuthUIStateChange } from '@aws-amplify/ui-components';
-import { actions as loginActions } from '../login';
+import { actions as loginActions, loadUserData, CognitoUser } from '../login';
 
 import { LeftCol, RightCol, ProfileBody, MockGallery } from './styles';
 
@@ -66,8 +66,9 @@ const Profile = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    onAuthUIStateChange((authState, authData) => {
-      dispatch(setUser({ authState, user: authData }));
+    onAuthUIStateChange(async (authState, user) => {
+      const userData = await loadUserData(user as CognitoUser);
+      dispatch(setUser({ authState, user, userData }));
     });
   }, []);
 

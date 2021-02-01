@@ -1,3 +1,3 @@
-import Header from './header';
+import Summary from './summary';
 
-export default Header;
+export default Summary;

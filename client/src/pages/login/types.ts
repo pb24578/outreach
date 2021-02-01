@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import { AuthState, CognitoUserInterface } from '@aws-amplify/ui-components';
+import { Investor, BusinessOwner } from '../dashboard';
 
 export interface CognitoUser extends CognitoUserInterface {
   attributes?: {
@@ -19,5 +20,12 @@ export interface CognitoUser extends CognitoUserInterface {
 export interface Login {
   authState: AuthState;
   user: CognitoUser | undefined;
+  userData: Investor | BusinessOwner | undefined;
   userLoaded: boolean;
+}
+
+export interface SetUserPayload {
+  authState: AuthState;
+  user: any | undefined;
+  userData: Investor | BusinessOwner | undefined;
 }

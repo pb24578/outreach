@@ -4,10 +4,12 @@ type BusinessOwner @model {
  lastName: String!
  businessName: String!
  location: String!
+ profilePicture: AWSURL
  bio: String
  tags: [String!]
  storyBio: String
  minorityOwned: Boolean!
+ certificate: AWSURL
  loans: [Loan!] @connection(name: "BusinessOwnerLoans")
  chatRooms: [ChatRoom!] @connection(name: "BusinessOwnerChatRooms")
 }
@@ -24,6 +26,7 @@ type Investor @model {
  firstName: String!
  lastName: String!
  location: String!
+ profilePicture: AWSURL
  bio: String
  tags: [String!]
  minMaxLoan: [Float!]
