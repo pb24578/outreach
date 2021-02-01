@@ -73,8 +73,10 @@ const Onboarding = () => {
       const businessOwnerInput = {
         ...newBusinessOwner,
         ...profileInfo,
+        profilePicture: profileInfo.profilePicture.length > 0 ? profileInfo.profilePicture : null,
         minorityOwned: isMinorityOwned,
         tags: splitTags,
+        certificate: newBusinessOwner.certificate.length > 0 ? newBusinessOwner.certificate : null,
       };
       createBusinessOwner(businessOwnerInput, user);
     }
@@ -95,6 +97,7 @@ const Onboarding = () => {
       const investorInput = {
         ...newInvestor,
         ...profileInfo,
+        profilePicture: profileInfo.profilePicture.length > 0 ? profileInfo.profilePicture : null,
         tags: splitTags,
       };
       createInvestor(investorInput, user);
