@@ -23,6 +23,7 @@ export const getBusinessOwner = `
             lastName
             location
             profilePicture
+            certificate
           }
           investor {
             id
@@ -71,6 +72,7 @@ export const getInvestor = `
             lastName
             location
             profilePicture
+            certificate
           }
           messages {
             items {

@@ -2,8 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AmplifySignOut } from '@aws-amplify/ui-react';
 import { onAuthUIStateChange } from '@aws-amplify/ui-components';
-import { actions as loginActions, getUserData, loadOtherUserData, loadUserData, CognitoUser } from '../login';
-import { BusinessOwner, Investor, isBusinessOwner, isInvestor } from '../dashboard';
+import {
+  actions as loginActions,
+  BusinessOwner,
+  Investor,
+  isBusinessOwner,
+  isInvestor,
+  getUserData,
+  loadOtherUserData,
+  loadUserData,
+  CognitoUser,
+} from '../login';
 
 import { LeftCol, RightCol, ProfileBody, MockGallery } from './styles';
 

@@ -1,7 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { AuthState } from '@aws-amplify/ui-components';
-import { Login, SetUserPayload } from './types';
-import { Investor, BusinessOwner } from '../dashboard';
+import { BusinessOwner, Investor, Login, SetUserPayload } from './types';
 
 export const initialState: Login = {
   authState: AuthState.SignIn,

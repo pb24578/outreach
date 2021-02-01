@@ -18,7 +18,7 @@ interface ContactProps {
   id: string;
   name: string;
   location: string;
-  photo?: string;
+  photo: string | null;
 }
 
 const { setSelectedChat } = actions;

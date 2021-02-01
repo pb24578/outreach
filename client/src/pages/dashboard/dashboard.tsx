@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { getUserData } from '../login';
-import { isBusinessOwner, isInvestor } from './types';
+import { getUserData, isBusinessOwner, isInvestor } from '../login';
 
 import Header from '../../shared/containers/header';
 import Chat from '../../shared/containers/chat';

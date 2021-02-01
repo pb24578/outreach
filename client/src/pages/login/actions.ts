@@ -2,8 +2,7 @@
 import { API, Auth, graphqlOperation } from 'aws-amplify';
 import { AuthState } from '@aws-amplify/ui-components';
 import { createAsyncAction } from 'async-selector-kit';
-import { BusinessOwner, Investor } from '../dashboard/types';
-import { CognitoUser } from './types';
+import { BusinessOwner, CognitoUser, Investor } from './types';
 import { getBusinessOwner, getInvestor } from './selectors';
 import { actions } from './reducer';
 

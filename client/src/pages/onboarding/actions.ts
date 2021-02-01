@@ -2,8 +2,7 @@
 /* eslint-disable no-console */
 import { API, graphqlOperation } from 'aws-amplify';
 import { createAsyncAction } from 'async-selector-kit';
-import { actions as loginActions, CognitoUser } from '../login';
-import { BusinessOwner, Investor } from '../dashboard';
+import { actions as loginActions, BusinessOwner, CognitoUser, Investor } from '../login';
 
 const { setUserData } = loginActions;
 
