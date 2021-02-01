@@ -46,16 +46,16 @@ const Dashboard = () => {
     <div>
       <Header
         links={DUMMY_DATA.links}
-        photo={DUMMY_DATA.photo}
+        photo={userData.profilePicture}
         isProfile={false}
-        isInvestor={DUMMY_DATA.isInvestor}
-        isVerified={DUMMY_DATA.isVerified}
-        firstName={DUMMY_DATA.firstName}
-        lastName={DUMMY_DATA.lastName}
-        business={DUMMY_DATA.business}
+        isInvestor={isInvestor(userData)}
+        isVerified={isBusinessOwner(userData) ? userData.certificate !== null : true}
+        firstName={userData.firstName}
+        lastName={userData.lastName}
+        business={isBusinessOwner(userData) ? userData.businessName : ''}
         memberSince={DUMMY_DATA.memberSince}
       />
-      <Link to="/profile">To Profile</Link>
+      <Link to={`/profile?id=${userData.id}`}>To Profile</Link>
       <Chat />
     </div>
   );

@@ -29,7 +29,7 @@ const generateLinks = (links: LinkObj[]) => {
   links.map((link): object => {
     const { href, display }: LinkObj = link as LinkObj;
     list.push(
-      <p>
+      <p key={href}>
         <a href={href}>{display}</a> +
       </p>,
     );

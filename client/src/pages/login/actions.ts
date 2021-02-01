@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { API, Auth, graphqlOperation } from 'aws-amplify';
 import { AuthState } from '@aws-amplify/ui-components';
 import { createAsyncAction } from 'async-selector-kit';
@@ -34,6 +35,21 @@ export const loadUserData = async (user: CognitoUser | undefined) => {
       id: user.username,
     }),
   ) as Promise<any>;
+  const [investor, businessOwner] = await Promise.all([investorPromise, businessOwnerPromise]);
+  const investorData: Investor = investor.data.getInvestor;
+  const businessOwnerData: BusinessOwner = businessOwner.data.getBusinessOwner;
+  if (investorData) {
+    return investorData;
+  }
+  if (businessOwnerData) {
+    return businessOwnerData;
+  }
+  return undefined;
+};
+
+export const loadOtherUserData = async (id: string) => {
+  const investorPromise = API.graphql(graphqlOperation(getInvestor, { id })) as Promise<any>;
+  const businessOwnerPromise = API.graphql(graphqlOperation(getBusinessOwner, { id })) as Promise<any>;
   const [investor, businessOwner] = await Promise.all([investorPromise, businessOwnerPromise]);
   const investorData: Investor = investor.data.getInvestor;
   const businessOwnerData: BusinessOwner = businessOwner.data.getBusinessOwner;

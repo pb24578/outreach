@@ -34,7 +34,11 @@ const generateNavLinks = (links: LinkObj[]) => {
 
   links.map((link): object => {
     const { href, display }: LinkObj = link as LinkObj;
-    list.push(<a href={href}>{display}</a>);
+    list.push(
+      <a key={href} href={href}>
+        {display}
+      </a>,
+    );
     return link;
   });
   return list;

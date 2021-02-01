@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { AmplifySignOut } from '@aws-amplify/ui-react';
 import { onAuthUIStateChange } from '@aws-amplify/ui-components';
-import { actions as loginActions, loadUserData, CognitoUser } from '../login';
+import { actions as loginActions, getUserData, loadOtherUserData, loadUserData, CognitoUser } from '../login';
+import { BusinessOwner, Investor, isBusinessOwner, isInvestor } from '../dashboard';
 
 import { LeftCol, RightCol, ProfileBody, MockGallery } from './styles';
 
@@ -30,26 +31,6 @@ interface HeaderProps {
   memberSince: string;
 }
 
-const content =
-  'We’re humans helping humans. During these trying times, minority business owners have found it hard to keep their businesses afloat. Since COVID began decimating the U.S in 2019, thousands of small businesses across the country have gone bankrupt.';
-
-const egsTags = [
-  'hello',
-  'hello',
-  'hello',
-  'hello',
-  'hello',
-  'hello',
-  'hello',
-  'hello',
-  'hello',
-  'hello',
-  'hello',
-  'hello',
-  'hello',
-  'hello',
-];
-
 const DUMMY_DATA: HeaderProps = {
   links: [{ display: 'hello', href: '/' }],
   photo: Kanye,
@@ -64,6 +45,19 @@ const DUMMY_DATA: HeaderProps = {
 
 const Profile = () => {
   const dispatch = useDispatch();
+  const thisUserData = useSelector(getUserData);
+  const [userData, setUserData] = useState<Investor | BusinessOwner>();
+
+  const setOtherUserData = async (idParam: string | null) => {
+    if (idParam) {
+      // load the other user's data and set the user data state
+      const otherUserData = await loadOtherUserData(idParam);
+      setUserData(otherUserData);
+    } else {
+      // no URL parameter specified, so show this user's data instead
+      setUserData(thisUserData);
+    }
+  };
 
   useEffect(() => {
     onAuthUIStateChange(async (authState, user) => {
@@ -72,24 +66,34 @@ const Profile = () => {
     });
   }, []);
 
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const idParam = urlParams.get('id');
+    setOtherUserData(idParam);
+  }, []);
+
+  if (!userData) {
+    return <div />;
+  }
+
   return (
     <div>
       <Header
         links={DUMMY_DATA.links}
-        photo="https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-9/141735394_280487163498802_1432936418341671874_o.jpg?_nc_cat=100&ccb=2&_nc_sid=09cbfe&_nc_ohc=4tndq88xgcsAX_sRg5u&_nc_ht=scontent-atl3-1.xx&oh=31ae573da285eab6328b86b68525109f&oe=603D76F5"
+        photo={userData.profilePicture}
         isProfile
-        isInvestor={DUMMY_DATA.isInvestor}
-        isVerified={DUMMY_DATA.isVerified}
-        firstName={DUMMY_DATA.firstName}
-        lastName={DUMMY_DATA.lastName}
-        business={DUMMY_DATA.business}
+        isInvestor={isInvestor(userData)}
+        isVerified={isBusinessOwner(userData) ? userData.certificate !== null : true}
+        firstName={userData.firstName}
+        lastName={userData.lastName}
+        business={isBusinessOwner(userData) ? userData.businessName : ''}
         memberSince={DUMMY_DATA.memberSince}
       />
       <ProfileBody>
         <LeftCol>
-          <InfoParagraph titleText="EGSs" tags={egsTags} />
-          <InfoParagraph titleText="About Me" bodyText={content} />
-          <InfoParagraph titleText="Why We Need Help" bodyText={content} />
+          <InfoParagraph titleText="EGSs" tags={userData.tags} />
+          <InfoParagraph titleText="About Me" bodyText={userData.bio} />
+          {isBusinessOwner(userData) && <InfoParagraph titleText="Why We Need Help" bodyText={userData.storyBio} />}
         </LeftCol>
         <RightCol>
           {MockGallery()}
